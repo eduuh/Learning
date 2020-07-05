@@ -64,5 +64,13 @@ The official Node.js websites provides two packages containing LTS and currents 
 12. Debuggin your ExpressJs web application.
 
 
+### Routing in ExpressJs
 
+Routing refers to how an application responds or acts when a resource is requested via an **Http** verb or **Http** method.
+
+*HTTP* stands for __Hypertext Transfer Protocal__ and it's the basis of data communication for the WWW . All documents and data in the WWW are identified by a **Uniform Resource Locator (URL)**.
+
+HTTP verbs or HTTP method are a client-server model. Typically , a web browser as a client, and in our case ExpressJS in the framework that allows us to create a server capable of understanding these requests. Every request expexts a responses to be sent to the client to recognize the status of the resource that it is requesting.
+
+Request method can be 
 
