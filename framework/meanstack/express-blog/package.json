@@ -1,0 +1,15 @@
+{
+  "name": "express-blog",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {},
+  "scripts": {
+    "start": "nodemon -s src/App.js"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
