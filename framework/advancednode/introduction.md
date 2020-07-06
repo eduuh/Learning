@@ -29,5 +29,17 @@ We have Event Loop. -> One Thread (Running a node projects)
           - Handle close events.
 
 
+### Improving Node performance
+
+Use Node in cluster Mode  -> Recommended
+Using worker Threads    -> exprimental
+
+## Clustering Mode
+
+check on pm2 documentation.
+
+
+### Use Worker Threads
+
 
 
