@@ -1,14 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var request = require('request');
-const { response } = require('express');
 
-const apiKey = '1fb720b97cc13e580c2c35e1138f90f8';
-const apiBaseUrl = 'http://api.themoviedb.org/3';
-const nowPlayingUrl = `${apiBaseUrl}/movie/now_playing?api_key=${apiKey}`;
+//const apiKey = '1fb720b97cc13e580c2c35e1138f90f8';
+const apiKey = '123456789';
+//const apiBaseUrl = 'http://api.themoviedb.org/3';
+const apiBaseUrl = 'http://localhost:3030';
+//const nowPlayingUrl = `${apiBaseUrl}/movie/now_playing?api_key=${apiKey}`;
+const nowPlayingUrl = `${apiBaseUrl}/most_popular?api_key=${apiKey}`;
 const imageBaseUrl = 'http://image.tmdb.org/t/p/w300';
-
-router.use((req, res, next) => {
+//localhost:3030/most_popular?api_key=123456789
+http: router.use((req, res, next) => {
   res.locals.imageBaseUrl = imageBaseUrl;
   next();
 });
@@ -21,6 +23,7 @@ router.get('/', function (req, res, next) {
   //1. error (if any)
   //2. http response
   //3  json/data from the server
+  console.log(nowPlayingUrl);
   request.get(nowPlayingUrl, (error, response, movieData) => {
     //console.log('=======The error ===========');
     //console.log(error);
