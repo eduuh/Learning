@@ -31,6 +31,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/login', passport.authenticate('github'));
+
 router.get(
   '/auth',
   passport.authenticate('github', {
