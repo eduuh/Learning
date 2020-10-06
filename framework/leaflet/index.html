@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quick Start - Leaflet</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="docs/images/favicon.ico"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+      crossorigin=""
+    />
+    <script
+      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+      crossorigin=""
+    ></script>
+  </head>
+  <body>
+    <div id="mapid" style="width: 1000px; height: 700px"></div>
+    <script>
+      var mymap = L.map('mapid').setView([-0.39487, 36.964549], 16);
+      var geojson = {
+        type: 'FeatureCollection',
+        features: [
+          {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'Polygon',
+              coordinates: [
+                [
+                  [36.96256756782532, -0.3949253281675425],
+                  [36.96120500564575, -0.39508625688395915],
+                  [36.96005702018738, -0.39601964337757206],
+                  [36.95910215377807, -0.3966204438236274],
+                  [36.95956349372864, -0.39810098759369744],
+                  [36.960164308547974, -0.400171602710102],
+                  [36.96217060089111, -0.39977464544840624],
+                  [36.96503520011902, -0.3985301306658015],
+                  [36.96583986282348, -0.39658825808654996],
+                  [36.96533560752869, -0.39491459958634123],
+                  [36.96372628211975, -0.39378809848291635],
+                  [36.962352991104126, -0.3935198839120326],
+                  [36.961365938186646, -0.3940133987157892],
+                  [36.960614919662476, -0.394571284980495],
+                  [36.96051836013794, -0.39502188539775634],
+                  [36.96006774902344, -0.39595527189862095],
+                  [36.96256756782532, -0.3949253281675425],
+                ],
+              ],
+            },
+          },
+          {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'Point',
+              coordinates: [36.96401596069336, -0.3949789710733582],
+            },
+          },
+          {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'Point',
+              coordinates: [36.96318984031677, -0.39449618490858723],
+            },
+          },
+          {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'Point',
+              coordinates: [36.96416616439819, -0.39423869894258085],
+            },
+          },
+          {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'Point',
+              coordinates: [36.96231007575989, -0.3936486269071346],
+            },
+          },
+          {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'Point',
+              coordinates: [36.96176290512085, -0.3945390992354789],
+            },
+          },
+        ],
+      };
+      L.geoJSON(geojson, {
+        style: function (feature) {
+          return { color: feature.properties.color };
+        },
+      }).addTo(mymap);
+      var LeafIcon = L.Icon.extend({
+        options: {
+          iconSize: [38, 40],
+          iconAnchor: [22, 94],
+          popupAnchor: [-3, -76],
+        },
+      });
+
+      // var popup = L.popup()
+      //   .setLatLng(latlng)
+      //   .setContent('<p>Hello world!<br />This is a nice popup.</p>')
+      //   .openOn(map);
+
+      var greenIcon = new LeafIcon({ iconUrl: 'cemetery.png' });
+
+      L.marker([-0.39487, 36.964549], { icon: greenIcon })
+        .addTo(mymap)
+        .bindPopup('<b>Hello world!</b><br /> I am dedan kimathi.')
+        .openPopup();
+      L.circle([-0.39487, 36.964549], 1000, {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+      })
+        .addTo(mymap)
+        .bindPopup('The geofence');
+
+      L.tileLayer(
+        'https://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png',
+        {
+          maxZoom: 18,
+          attribution:
+            'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+            '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+            'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          id: 'mapbox/streets-v11',
+          tileSize: 512,
+          zoomOffset: -1,
+        }
+      ).addTo(mymap);
+    </script>
+  </body>
+</html>
