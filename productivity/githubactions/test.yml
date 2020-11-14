@@ -1,0 +1,38 @@
+nama: Ali
+age: 28
+address: "nyahurur: kenya"
+active: true
+key:
+  key: Value
+  key3:
+    key3: value
+    kel2: value3
+jsonObject:
+  key: value
+  key2: value
+  key3: 3value
+  key4: { key: value, key2: value }
+
+array: 
+  - item1
+  - items2
+  - {key: value}
+
+jsonArray: [item1, item2]
+objectsArray:
+    - key: value
+      key3: value2
+    - key: value
+      key2: value2
+    
+longText: >
+    isntisntin irnitnsnt irntianoien oerntensenta onstest
+    aosntsent onstaenr isntoaesnt osntesntaen aortnest oasetn
+
+# ☝ does not mantain new line.
+# To maitain New lines
+
+longText2: |
+    isntisntin irnitnsnt irntianoien oerntensenta onstest
+    aosntsent onstaenr isntoaesnt osntesntaen aortnest oasetn
+
