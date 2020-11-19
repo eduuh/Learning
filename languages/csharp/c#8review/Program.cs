@@ -62,7 +62,7 @@ namespace c_8review
 
       // Undestandig vertim strings
       string fullNamewithTabseparator = "Bob\tSmith";
-      string filepath = "C:\televisions\sony\bravia.txt";
+      string filepath = @"C:\televisions\sony\bravia.txt";
       string filepath2 = @"C:\televison\sony\bravia.txt"
 
     // Literal String: characters enclosed in double-quote characters. They can use escape characters like \t fo tab.
@@ -81,7 +81,14 @@ namespace c_8review
         WriteLine(names[i]);
       }
 
+      double a = 0.1;
+      double b = 0.3;
 
+      if(a +b == 0.4) {
+        Console.WriteLine($"{a} + {b} equals 0.3");
+      } else{
+        Console.WriteLine($"{ a } + { b }  does Not equal 0.4");
+      }
     }
   }
 }

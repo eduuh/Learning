@@ -6,6 +6,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>c_8review</RootNamespace>
     <LangVersion>8.0</LangVersion>
+    
     <!--Your projects must target either netcoreapp3 or netstandard2 to use c# 8.0-->
   </PropertyGroup>
 
