@@ -1,7 +1,12 @@
 ﻿#nullable enable
 
 using System;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
+using static System.Convert;
+
 
 
 namespace ds
@@ -13,24 +18,145 @@ namespace ds
 
             //arrays();
             //LocalVariables();
-            //           GetKey();
-            Console.WriteLine($"There are {args.Length} arguments");
+           //GetKey();
+          //Fuctions.RunTimesTable();
+          //Fuctions.RunCaldinalToOrdinal();
+         // Fuctions.RunFactorial();
 
-            foreach(string arg in args){
-              Console.WriteLine(arg);
+         var builder = new ConfigurationBuilder()
+         .SetBasePath(Directory.GetCurrentDirectory())
+         .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+         IConfigurationRoot configuration = builder.Build();
+         var ts = new TraceSwitch(
+           displayName: "PacktSwitch",
+           description: "This switch is set via a Json config"
+         );
+
+         configuration.GetSection("PacktSwitch").Bind(ts);
+
+         Trace.WriteLineIf(ts.TraceError, "Trace error");
+         Trace.WriteLineIf(ts.TraceWarning, "Trace warning");
+         Trace.WriteLineIf(ts.TraceInfo, "Trace information");
+         Trace.WriteLineIf(ts.TraceVerbose, "Trace verbose");
+
+
+          
+        
+
+
+        
+           
+
+        }
+        public static void debuuggin() {
+         double a = 4.5;
+         double b = 2.5;
+         double answer = Debugging.Add(a,b);
+         Console.WriteLine($"{a}+{b} = {answer}");
+        }
+        public static void Args(string[] args) {
+            if (args.Length == 0)
+                Console.WriteLine("Ther are no arguments");
+            else
+                Console.WriteLine("There is a least one argument");
+
+            foreach (string arg in args)
+            {
+                Console.WriteLine(arg);
             }
         }
-        public static void Foreground(string[] args){
 
-          if(args.Length < 4) {
-            Console.WriteLine("You must specify two colors and dimensions");
-            Console.WriteLine("dotnet run red yellow 80 40");
-            return; //stop running
-          }
+        public static void operators(string[] args)
+        {
+            iteration();
+            Console.WriteLine($"There are {args.Length} arguments");
 
-          //ForegroundColor = (ConsoleColor)Enum.Parse(enumType: typeof(ConsoleColor), value: args[1], ignoreCase: true );
+            int a = 3;
+            int b = 3;
+            int c = b++;
 
-          //BackgroundColor = (ConsoleColor)Enum.Parse(enumType: typeof(ConsoleColor), value: args[1], ignoreCase: true );
+            Console.WriteLine($"a++ {a++} value a {a}");
+            Console.WriteLine($"++a {++b} value a {b}");
+            Console.WriteLine($"C {c}");
+        }
+        public static void newSwitch()
+        {
+
+        }
+
+        public static void iteration()
+        {
+            int x = 0;
+
+            while (x < 10)
+            {
+                Console.WriteLine(x);
+                x++;
+            }
+            string passwod = string.Empty;
+
+            do
+            {
+                Console.WriteLine("Enter your password");
+                passwod = Console.ReadLine();
+            } while (passwod != "PASSword");
+
+            for (int y = 1; y <= 10; ++y)
+            {
+
+                Console.WriteLine($"for loop  {y}");
+            }
+
+            Console.WriteLine("Correct!");
+
+            string[] names = { "Adam", "Barry", "Charlie" };
+
+            // Not suitable when there is need to assign new values.
+            foreach (string name in names)
+            {
+
+                Console.WriteLine($"{name} has {name.Length} characters");
+            }
+
+            var e = names.GetEnumerator();
+
+            while (e.MoveNext())
+            {
+                string name = (string)e.Current;
+
+                Console.WriteLine($"{name} has {name.Length} characters");
+            }
+
+
+        }
+        public static void Conversion()
+        {
+
+            double g = 9.8;
+            //using the convert namespace. Using static System.Convert
+            int h = ToInt32(g);
+
+            int number = 12;
+            Console.WriteLine(number.ToString());
+
+            bool boolean = true;
+            Console.WriteLine(boolean.ToString());
+
+        }
+        public static void Foreground(string[] args)
+        {
+
+            if (args.Length < 4)
+            {
+                Console.WriteLine("You must specify two colors and dimensions");
+                Console.WriteLine("dotnet run red yellow 80 40");
+                return; //stop running
+            }
+
+            //ForegroundColor = (ConsoleColor)Enum.Parse(enumType: typeof(ConsoleColor), value: args[1], ignoreCase: true );
+
+            //BackgroundColor = (ConsoleColor)Enum.Parse(enumType: typeof(ConsoleColor), value: args[1], ignoreCase: true );
 
         }
 
