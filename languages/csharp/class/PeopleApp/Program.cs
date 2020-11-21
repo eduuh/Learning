@@ -70,6 +70,45 @@ BankAccount.InterestRates = 0.012M;
           WriteLine(bob.OptionalParameters());
           WriteLine(bob.OptionalParameters("Jump!", 98.5));
 
+          int a = 10;
+          int b = 20;
+          int c = 30;
+          int d = 10;
+          int e = 20;
+
+          WriteLine($"Before: a = {a}, b= {b} c = {c}");
+          bob.PassingParameters(a, ref b, out c);
+
+          WriteLine($"After: a = {a}, b= {b} c = {c}");
+
+          WriteLine($"Before: d = {d} , e = {e} , f does not exist yet");
+
+          bob.PassingParameters(d, ref e , out int f) ;
+
+          WriteLine($"After: d = {d} , e = {e} , f = {f}");
+
+          var sam = new Person {
+              Name = "sam",
+              DateofBirth = new DateTime(1972, 1,2)
+         };
+         sam.Favourite = WondersOfTheachientWorld.ColossusOfRhodes;
+
+         WriteLine($"Sam's favouride wonder of the world is {sam.Favourite}");
+
+         sam.Childrens.Add(new Person{Name = "Cythia"});
+         sam.Childrens.Add(new Person{Name = "Edwin"});
+
+
+
+
+         
+
+          
+
+          
+
+
+
 
         }
     }
