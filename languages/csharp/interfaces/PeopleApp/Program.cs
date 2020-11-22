@@ -1,7 +1,7 @@
 ﻿using System;
 using static System.Console;
 using  Packt.shared;
-
+using PacktLibrary;
 
 namespace PeopleApp
 {
@@ -73,7 +73,29 @@ namespace PeopleApp
                 WriteLine($"{person.Name}");
             }
 
+            var t1 = new Thing();
+            t1.Data = 43;
+            WriteLine($"Thing with an interger {t1.Process(43)}");
 
+
+            var t2 = new Thing();
+            t2.Data = "apple";
+            WriteLine($"Thing with an string {t2.Process("apple")}");
+
+            var gt1 = new GenericThing<int>();
+            gt1.Data = 42;
+            WriteLine($"Thing with an int {t2.Process(42)}");
+
+
+            var gt2 = new GenericThing<string>();
+            gt2.Data = "apple";
+            WriteLine($"Thing with an string {t2.Process("apple")}");
+
+            string number = "4";
+            WriteLine("{0} squared is {1}", arg0: number, arg1: Squarer.Square<string>(number));
+
+            byte number2 = 3;
+            WriteLine("{0} squared is {1}", arg0: number2, arg1: Squarer.Square(number2));
 
         }
 
