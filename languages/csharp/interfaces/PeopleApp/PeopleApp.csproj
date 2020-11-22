@@ -6,6 +6,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
+        <LangVersion>8.0</LangVersion>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 

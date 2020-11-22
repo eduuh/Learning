@@ -4,8 +4,24 @@ using static System.Console;
 
 namespace Packt.shared
 {
-    public class Person
+    public class Person: IComparable<Person>
     {
+        // event delegate field
+        public event EventHandler shout;
+        // data field
+        public int AngerLevel;
+
+        // method
+        public void Poke()
+        {
+            AngerLevel++;
+            if (AngerLevel >= 3) {
+                if(shout != null) {
+                    shout(this, EventArgs.Empty);
+                }
+            }
+    }
+
         // fields
         public string Name;
         public DateTime DateOfBirth;
@@ -35,7 +51,24 @@ namespace Packt.shared
             return Procreate(this, partner);
         }
 
+        public static int Factorial(int number) {
+            if(number < 0) {
+                throw new ArgumentException(
+                    $"{nameof(number)} cannot be less that zero"
+                );
+            }
+                return localFactorial(number);
 
+                int localFactorial(int localNumber) {
+                    if(localNumber < 1) return 1;
+                    return localNumber * localFactorial(localNumber -1);
+                }
 
+        }
+
+        public int CompareTo(Person other)
+        {
+            return Name.CompareTo(other.Name);
+        }
     }
 }
