@@ -12,10 +12,10 @@ class Program
         Socket s = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
         for(int i=0;i<=40; i++){
-        IPAddress broadcast = IPAddress.Parse("127.0.0.1");
+        IPAddress broadcast = IPAddress.Parse("41.89.227.168");
 
         byte[] sendbuf = Encoding.ASCII.GetBytes(i.ToString());
-        IPEndPoint ep = new IPEndPoint(broadcast, 11000);
+        IPEndPoint ep = new IPEndPoint(broadcast, 3030);
 
         s.SendTo(sendbuf, ep);
 
