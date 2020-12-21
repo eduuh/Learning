@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<link rel="stylesheet" href="~/css/chat.css" />
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+<div id="chatDialog" title="Chat with support" class="disconnected">
+    <div id="chatWelcomePanel">
+        <h3>Have a question?</h3>
+        <form id="chatConnectForm">
+            <input type="text" placeholder="Enter your name" />
+            <button type="submit">Connect</button>
+        </form>
+    </div>
+    <div id="chatConnectionInfo">
+        <strong>Connecting...</strong>
+    </div>
+    <div id="chatMainPanel">
+        <ul id="chatHistory"></ul>
+        <div id="bottomPanel">
+            <form id="chatForm">
+                <input id="messageTextbox" type="text" placeholder="Type a message" />
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+</div>
