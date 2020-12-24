@@ -45,6 +45,10 @@ Since We will be handling payments in our application we need to **to Add Stripe
 dotnet add package Stripe.net --version 39.31.0
 ```
 
-### Changin the Theme with Bootswatch
+## Changing the Theme with Bootswatch
+
+Go to bootswatch .com and download a **bootstrap.min.css** come with it and replace the content of **bootsrap.min.css** in the **wwwroot/lib/bootrap/css**.
+
+
 
 
