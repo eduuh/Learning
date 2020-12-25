@@ -8,6 +8,7 @@ namespace Taste.DataAcess
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+          
         }
     }
 }

@@ -49,6 +49,49 @@ dotnet add package Stripe.net --version 39.31.0
 
 Go to bootswatch .com and download a **bootstrap.min.css** come with it and replace the content of **bootsrap.min.css** in the **wwwroot/lib/bootrap/css**.
 
+### Enable routing.
+
+This means setting up **mvc**. Types of rounting in mvc include.
+TODO check on types or routing in mvc.
+
+```csharp
+services.AddMvc(options => options.EnableEndpointRouting = false).SetCompatibilityVersion(Microsoft.AspNetCore.Mvc.CompatibilityVersion.Version_3_0);
+```
+
+Since we disabled **EndpointRouting** we need to remove the following code from **UseServices**.
+
+```csharp
+app.UseRouting();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapRazorPages();
+});
+```
+Replace the above code with 
+
+```csharp
+app.UseMvc();
+```
+
+### ThirdParty Plugins in Use
+
+* Jqurey User Interface.
+   - Datepicker
+* DataTables
+- fontawesome fonts. - create an account.
+  - free icons for you website.
+- toastr.js for notifications.
+- **sweet aleart**.
+- **TinyMCe** - create an account.
+- **jquery timepicker**
+
+
+### Unit of work.
+
+The unit of work class coodinates the work of multiple repositories by creating a single database context class shared by all of theme.
+
+
+
 
 
 
