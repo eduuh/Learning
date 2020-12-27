@@ -1,4 +1,4 @@
-## What is functional programming?.
+## What is functional programming?. Bianca 
 
 Its about verbs. What it do. Its a style.
 
@@ -177,5 +177,57 @@ The are where a function has access to some value.
 3. Block scope.
     - block scope can be created with let.
 
+#### Function in javaScript are Data
+
+You can pass them around just like you would with other objects.
+
+High order fucntions can rerutnr a fuction as an output.
+
+### Callbacks
+
+Functions that are passed inside of other functions.
+
+```js
+const ifElse = (condition, isTrue, isFalse)=> {
+  return condition ? isTrue : isFalse;
+}
+ifElse(true, 
+()=> { console.log(true) },
+()=> {console.log(false)}
+)
+
+```
+
+#### Look into apply bind
+
+##### Currying
+
+Create a function that can be later be called with multiple arguments.
+
+```js
 
 
+```
+
+#### Composing
+
+
+#### Advanced Scope
+
+
+#### closure
+
+///closure.
+
+1. Create your parent function
+2. Define some variable in the parent local scope.
+3. Define a function inside the parent function. We call this a child.
+4. Return that function from Inside the parent function.
+
+### Execution.
+
+1. Run parent function and save to a variable. This variable will hold whatever that function Returns.
+2. Optinal: check what that variable holds as its value. (HINT: it should be the inner function.)
+3. Run the inner function.
+   
+You could use a closure to hide the fuctionality of the code while maintaining the **data**
