@@ -6,7 +6,9 @@ console.log('times10 returns: ', times10(9));
 const cache = {};
 
 const memoTimes10 = (n) => {
+  // Improtant for function with higher time complexities
   if (n in cache) {
+    console.log("Fetching  from cache");
     return cache[n];
   } else {
     console.log('Calculating result');

@@ -1,0 +1,31 @@
+var tracker = 0;
+
+var callMe = function(arg) {
+ tracker++;   1
+ console.log(tracker);
+ if( tracker === 3){
+    tracker = 0;
+ return `loops ${arg}`;
+ }
+ return callMe('anytime');    // loops anytim
+}
+
+var callMe = function(arg) { //args > anytime
+ tracker++;   2
+ console.log(tracker);
+ if( tracker === 3){
+    tracker = 0;
+ return `loops ${arg}`;
+ }
+ return callMe('anytime');      // loops anytime
+}
+
+var callMe = function(arg) { //args > 'anytime'
+ tracker++;   3
+ console.log(tracker);
+ if( tracker === 3){
+    tracker = 0;
+ return `loops ${arg}`;        // loops anytime
+ }
+ return callMe('anytime');
+}

@@ -1,0 +1,76 @@
+  function recurse(0, ''){
+    resultSofar += array[index];  //eddi
+    if(index === array.length-1) {
+      resultSofar += "but confusing",
+      return resultSofar;
+    }else{
+      return recurse(index+1, resultSofar + joinString); // 1, "eddie"
+    }
+  }
+  return recurse(0, '');
+}
+
+
+  function recurse(1, eddie){
+    eddie += array[index];  //eddie + "\'s s" > eddie's s
+    if(index === array.length-1) {
+      resultSofar += "but confusing",
+      return resultSofar;
+    }else{
+      return recurse(index+1, resultSofar + joinString); // (2,eddie's s + e) 
+    }
+  }
+  return recurse(0, '');
+}
+
+  function recurse(2, 'eddie\'s se'){
+    'eddie\'s se' += array[index];  >//'eddie\'s secr'
+    if(index === array.length-1) {
+      resultSofar += "but confusing",
+      return resultSofar;
+    }else{
+      return recurse(index+1, resultSofar + joinString); (3, "eddie\'s secr" + 
+      "e")
+    }
+  }
+  return recurse(0, '');
+}
+
+  function recurse(3, "eddie\'s secre"){
+    resultSofar += array[index];  //eddie\'s secret Js Cod
+    if(index === array.length-1) {
+      resultSofar += "but confusing",
+      return resultSofar;
+    }else{
+      return recurse(index+1, resultSofar + joinString);(4, "eddie\'s secret Js Cod" + "e")
+    }
+  }
+  return recurse(0, '');
+}
+
+
+  function recurse(4, "eddie\'s secret Js Code"){
+    "eddie\'s secret Js Code" += array[index];  //"eddie\'s secret Js Code-snipp"
+    if(index === array.length-1) {
+      resultSofar += "but confusing",
+      return resultSofar;
+    }else{
+      return recurse(index+1, resultSofar + joinString);(5, "eddie\'s secret Js Code-snipp"+"e")
+    }
+  }
+  return recurse(0, '');
+}
+
+  function recurse(6, "eddie\'s secret Js Code-snippe"'){
+    eddie\'s secret Js Code-snippe += array[index];  //eddie\'s secret Js Code-snippet -> 
+    if(index === array.length-1) {
+      resultSofar += "but confusing", // > "eddie's secret Js code-snippet -> 🔥 but confusing"
+      return resultSofar;       /// return the result
+    }else{
+      return recurse(index+1, resultSofar + joinString);
+    }
+  }
+  return recurse(0, '');
+}
+
+// A last method return to the previous method. Once that is done it is pop out of the stack. 
