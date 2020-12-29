@@ -1,0 +1,23 @@
+{
+  "name": "streams",
+  "version": "1.0.0",
+  "description": "",
+  "main": "loud.js",
+  "dependencies": {
+    "concat-stream": "^2.0.0",
+    "crypto": "^1.0.1",
+    "estatic": "^0.1.1",
+    "split2": "^3.2.2",
+    "through2": "^4.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
