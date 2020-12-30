@@ -72,5 +72,5 @@ Routing refers to how an application responds or acts when a resource is request
 
 HTTP verbs or HTTP method are a client-server model. Typically , a web browser as a client, and in our case ExpressJS in the framework that allows us to create a server capable of understanding these requests. Every request expexts a responses to be sent to the client to recognize the status of the resource that it is requesting.
 
-Request method can be 
-
+##### Request method can be    
+be
