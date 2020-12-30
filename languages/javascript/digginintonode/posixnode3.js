@@ -31,15 +31,26 @@ if(args.help){
  printHelp();
 }else if(args.file){
   let stream = fs.createReadStream(path.join(BASE_PATH,args.file));
-        processFile(stream)
+  processFile(stream).then(function(){
+     console.log("complete!")
+  }).catch(error);
 }else if(args.in || args._.includes('-')){
    //getStdin().then(processFile).catch(error);
-  processFile(process.stdin);
+  processFile(process.stdin).then(function(){
+     console.log("completed!")
+  }).catch(error);
 }
 else{
   error("Incorrect Usage", true);
 }
 
+function streamComplet(stream){
+  return new Promise(function c(res){
+    stream.on("end", function(){
+      res();
+    })
+  });
+}
 
 function error(msg, includeHelp = false){
  console.error(msg);
@@ -51,7 +62,7 @@ function error(msg, includeHelp = false){
 }
 
 // *=============================
-function processFile(inStream){
+async function processFile(inStream){
   var outstream = inStream;
    
   if(args.uncompress){
@@ -84,7 +95,7 @@ function processFile(inStream){
 }
 
 function printHelp(){
-  console.log("Postnode2.js Usage")
+  console.log("Postnode3.js Usage")
   console.log("   posixnode --file={FILENAME}")
   console.log("--help               prints out output")
   console.log("--file={FILENAME}    process the file")
