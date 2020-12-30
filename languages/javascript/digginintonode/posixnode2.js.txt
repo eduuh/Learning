@@ -1,0 +1,8 @@
+var stream1; // readable
+var stream2; // writable
+var stream3; // readable
+
+//            readable.pipe(writable).pipe(writable)
+var stream3 = stream1.pipe(stream2);
+
+stream1.pipe(stream2).pipe(stream5).pipe(final)

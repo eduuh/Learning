@@ -1,0 +1,66 @@
+/// Call STack Game
+
+### first case call ->  ./posixnode.js --files=./readme.md
+    // runnig this with the excution script.j
+    // make it executable using : chmod u+x excution.js
+
+// the first two line are setting up the environment => script.
+
+----> we have acess to inbound iO process from the kernel using the process keyword
+      (posixs streams)
+      process.stdin    > 0
+      process.stdout   > 1
+      process.error    > 2
+
+./posixnode.js --files=./readme.md  #> I have on Parameter //["--files=./readme.md"]
+
+
+[
+  '/home/eduuh/.nvm/versions/node/v12.16.3/bin/node',
+  '/media/data/repos/proglearning/languages/javascript/digginintonode/excution.js',
+  '--files=./readme.md'
+]
+
+But you notice the First two elements of the object are not hat useful. We dont need the first 2 and inorder to do that we use the slice method.
+
+
+  process.argv.slice(2)
+
+]
+  '--files=./readme.md'
+]
+
+
+### first case call ->  ./posixnode.js --files=./readme.md --help with minimist
+
+  { _: [], '--help': false, files: './readme.md', help: 'follbar' }
+
+The object that are preppend with -- are passed by minimist. but if minismist does not know how to parse argv they are returned in the _ array. 
+
+
+  { _: [], '--help': false,'--file':'', files: './readme.md', help: 'follbar', file: 'readme.md' }
+
+
+    >  // Pass in a file 
+    > // Reade the content of the file
+    >// Convert the content of the files to uppercase.
+    // Print out the convertend text to the stdout.
+
+
+get_in is a npm package that handles all the function for reading in inputs from the stdout, and returns a promise with all the contents or errors encounterd, we can pass in the contents to our function or the errors to our error handler functions.
+
+    getStdin().then(processFile).catch(error)
+
+
+// Call> with STDIN  cat readme.md | ./excution.js --in
+
+output> I AM EDWIN KAMAUMURAYA! AND THIS IS MY STYLE
+
+// Call3 > Using environment variable for our script.
+
+$ BASE_PATH=./ ./excution.js --file=readme.md
+I AM EDWIN KAMAUMURAYA! AND THIS IS MY STYLE
+
+
+#### Handling file with streams.
+

@@ -150,3 +150,9 @@ Recurcion is **cool way** of looping.
 #### Looping
 
 Recursion can always be implemented as a loop, in some situations, believe it or not, it is simpler to use recursion.
+
+#### Divide and Conquer
+
+#### Greedy Algorithms
+
+#### Dynamic Algorithms
