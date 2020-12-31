@@ -82,4 +82,3 @@ function error(err, printHelp = false){
   }
 }
 
-

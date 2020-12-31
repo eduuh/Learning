@@ -64,3 +64,18 @@ I AM EDWIN KAMAUMURAYA! AND THIS IS MY STYLE
 
 #### Handling file with streams.
 
+
+stream1
+stream2
+
+function streamComplet(stream){
+  return new promise(function c(res){
+      stream.on("end", res)
+      }).then(function(responses)){
+        responses[0]; // stream1
+        responses[1]; // stream2 contents
+  }
+}
+
+
+

@@ -84,8 +84,8 @@ function processFile(inStream){
 }
 
 function printHelp(){
-  console.log("Postnode2.js Usage")
-  console.log("   posixnode --file={FILENAME}")
+  console.log("Postnode3.js Usage")
+  console.log("   posixnode3.js --file={FILENAME}")
   console.log("--help               prints out output")
   console.log("--file={FILENAME}    process the file")
   console.log("--in, -              process stdin ")

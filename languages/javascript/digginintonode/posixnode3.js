@@ -10,12 +10,21 @@ var minimist = require('minimist');
 var getStdin = require('get-stdin')
 var Transform = require('stream').Transform;
 var zlib = require("zlib");
+var CAF = require('caf');
 
 var args = minimist(process.argv.slice(2), {
    boolean: ["help", "in", "out", "compress", 'uncompress'],
    string: ["file"]
 });
 
+
+processFile = CAF(processFile);
+
+function streamComplet(stream){
+  return new Promise(function c(res){
+    stream.on("end",res);
+  });
+} 
 
 var BASE_PATH = path.resolve(
   process.env.BASE_PATH || __dirname
@@ -30,26 +39,23 @@ if(process.env.HELLO){
 if(args.help){
  printHelp();
 }else if(args.file){
+   console.log(args.file);
   let stream = fs.createReadStream(path.join(BASE_PATH,args.file));
-  processFile(stream).then(function(){
-     console.log("complete!")
+
+  let tooLong = CAF.timeout(20, "Took too long!");
+
+  processFile(tooLong,stream).then(function(){
+    console.log("complete");
   }).catch(error);
 }else if(args.in || args._.includes('-')){
    //getStdin().then(processFile).catch(error);
-  processFile(process.stdin).then(function(){
-     console.log("completed!")
+  let tooLong = CAF.timeout(20, "Took too long!");
+  processFile(tooLong, process.stdin).then(function(){
+    console.log("complete")
   }).catch(error);
 }
 else{
   error("Incorrect Usage", true);
-}
-
-function streamComplet(stream){
-  return new Promise(function c(res){
-    stream.on("end", function(){
-      res();
-    })
-  });
 }
 
 function error(msg, includeHelp = false){
@@ -62,9 +68,10 @@ function error(msg, includeHelp = false){
 }
 
 // *=============================
-async function processFile(inStream){
+function *processFile(signal, inStream){
   var outstream = inStream;
-   
+
+
   if(args.uncompress){
     let gunzipStream = zlib.createGunzip();
     outstream = outstream.pipe(gunzipStream)
@@ -91,7 +98,14 @@ async function processFile(inStream){
   }else{
     targetStream = fs.createWriteStream(OUTFILE);
   }
-  outstream.pipe(targetStream)
+  outstream = outstream.pipe(targetStream);
+
+  signal.pr.catch(function f(){
+    outstream.unpipe(targetStream)
+    outstream.destroy();
+  });
+
+  yield streamComplet(outstream);
 }
 
 function printHelp(){

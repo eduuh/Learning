@@ -11,7 +11,8 @@
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/posixnode.js"
+            "program": "${workspaceFolder}/posixnode3.js",
+            "args": ["--files=hello.txt"]
         }
     ]
 }

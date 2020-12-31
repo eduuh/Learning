@@ -4,6 +4,8 @@
   "description": "I am edwin kamaumuraya! and this is my style",
   "main": "firstnodeapp.js",
   "dependencies": {
+    "axios": "^0.21.1",
+    "caf": "^11.0.0",
     "get-stdin": "^8.0.0",
     "minimist": "^1.2.5",
     "utils": "^0.3.1"
