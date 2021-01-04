@@ -56,7 +56,7 @@ function defineRoutes(app) {
 
 		let records = await getAllRecords() || [];
 
-		// res.json(records);
+	    res.json(records);
 
 		res.setHeader("Content-Type","application/json");
 		res.setHeader("Cache-Control","max-age: 0, no-cache");

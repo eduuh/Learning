@@ -50,16 +50,94 @@ async function main() {
 
 	var initSQL = fs.readFileSync(DB_SQL_PATH,"utf-8");
 	// TODO: initialize the DB structure
-
+    await SQL3.exec(initSQL);
 
 	var other = args.other;
 	var something = Math.trunc(Math.random() * 1E9);
 
 	// ***********
+	var otherID = await insertOrLookupOther(other);
+
+	if(otherID){
+		// TODO
+		let result = await insertSomething(otherID, something)
+		if(result){
+			var records = await getAllRecords();
+			if(records && records.length > 0){
+				console.table(records);
+			}
+			return;
+		}
+
+		return;
+	}
 
 	// TODO: insert values and print all records
 
 	error("Oops!");
+}
+async function getAllRecords(){
+	var result = await SQL3.all(
+		` SELECT
+		     Other.data As 'other',
+			 Something.data As 'something'
+		  FROM
+		     Something JOIN Other
+			 ON (Something.otherID = other.id)
+		  ORDER BY
+		     other.id DESC, Something.data ASC
+
+		`);
+
+		if(result && result.length > 0){
+			return result;
+	   }
+	
+}
+async function insertSomething(otherID, data){
+	var result = await SQL3.run(
+		`
+           INSERT INTO
+		      Something (otherID, data)
+			VALUES
+			    (?,?)
+		`,  otherID, data
+	);
+		if(result && result.changes > 0){
+			return true;
+		}else{
+			return false;
+		}
+	
+}
+async function insertOrLookupOther(other){
+	var result = await SQL3.get(
+		`
+		SELECT 
+		    id 
+		FROM
+		    Other
+		WHERE
+		    data=?
+		`, other
+	);
+	if(result && result.id){
+		return result.id
+	}else{
+		result = await SQL3.run(
+			`
+           INSERT INTO
+		      Other (data)
+			VALUES
+			    (?)
+			`,
+			other
+		);
+		if(result && result.lastID){
+			return result.lastID;
+		}
+	}
+
 }
 
 function error(err) {
