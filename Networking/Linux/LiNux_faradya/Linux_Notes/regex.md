@@ -2,8 +2,7 @@
 
 regex is a pattern-matching language
 
-many programming languages and system tools
-have a regex engine
+many programming languages and system tools have a regex engine
 
 ---
 # system tools with regex
