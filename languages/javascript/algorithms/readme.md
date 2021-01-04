@@ -1,8 +1,6 @@
 ## Algorithms
 
-What makes an algorithm fast? To answer this question, it tend to be grouped in two categories. With respect to input size
-and also assuming the worst case scenario.
-
+What makes an algorithm fast? To answer this question, it tend to be grouped in two categories. With respect to input size and also assuming the worst case scenario.
 - Time complexity
 - Space Comlexity
 
@@ -10,11 +8,12 @@ and also assuming the worst case scenario.
 
 Here we answer the question of how many primitive **operations** are executed?
 
-Time complexity of an algorithm signifies the total time required by the program to run to completion. The tim complexity of algorithms is
-more commonly expressed usind the big O notation.
+Time complexity of an algorithm signifies the total time required by the program to run to completion. The time complexity of algorithms is more commonly expressed using the big O notation.
 
-Big-O notation gives us an Industry-standard language to discuss the performance of algorithms. Not knowing how to speak this language
-can make you stand out as an inexperienced programmer.
+**Big-O notation gives us an Industry-standard language** to discuss the performance of algorithms. 
+
+
+Not knowing how to speak this language **can make you stand out as an inexperienced programmer.**
 
 ##### Space Complexity
 
@@ -27,6 +26,8 @@ Given a list of hotels return the price range of hotels in a given search result
 ```Javascript
 var hotels = [
     {price : 200, brand : "best eastern"}
+    {price : 200, brand : "best eastern"}
+    {price : 300, brand : "best eastern"}
     ....
 ]
 ```
@@ -153,6 +154,97 @@ Recursion can always be implemented as a loop, in some situations, believe it or
 
 #### Divide and Conquer
 
-#### Greedy Algorithms
+Recursive calls to a subset of the Problem.
 
-#### Dynamic Algorithms
+0. Recognize base case.
+1. Divide: Break problem down during each call.
+2. Conquer: Do work on each subset.
+   - search for a match.
+3. Combine: solution.
+
+#### Searching Algoritms.
+
+##### binary Search
+
+Search for a value in a **sorted** array by cutting the side of the search area in half.
+Binary search is data must be sorted.
+
+##### Linear Search.
+
+For unsorted. You are going to loop throug a list to find the number.
+
+#### Sorting Algorithms
+
+There are alot of study on how to sort.
+There are two main types of sorting algoritms. All this sort are **comparison Sorts**.
+
+##### Nalve Sort
+
+###### Bubble Sort
+
+Loops through an array, comparing adjacent indices and swapping the greater value to the end.
+
+###### Insertion sort
+
+Take another empty, Take the smallest value it the original array push it to the new array. You do that until you have a new sorted array.
+
+###### Selection Sort
+
+
+##### Divide and Conquer
+
+Recursively divide list and sort smaller parts of list until entire list its sorted.
+
+##### Mergesort
+We take a unsorted list
+
+/// Pseudocode.
+
+// Merge Routine
+// Merge(L,R)
+[3,9,10]
+//[24]    //[]
+// initialize empty array.
+// compare the firt index ot left array.
+// to the first index of the right array.
+// push the lower value to empty array
+// shift the array with the lower value.
+// repeate untill both arrays are empty.
+
+mergesort(list)
+ base case: if list.length \< 2, return
+ break the list inot halves L and R
+ Lsorted = mergesort(L)
+ Rsorted = mergeSort(R)
+ return merge(Lsorted, Rsorted)
+
+[7,6,1,12]
+
+Our **merges sort algorithm** is nlogin
+
+#### Inteviwe Strategy
+
+##### Quicksort
+
+#### Dynamic Algorithms 
+
+#### interview
+
+Due to the time contrain of the inteview is it okay for me to implemente a naive sorted. But i could optimize it using a Divide and conqure algorithm.
+
+ if you are asked to do a searching algorithmes. the Best is to get it sorted. and then implement a binary search.
+
+
+
+#### Greedy Algorithms.
+
+Greedy algoritm algorithms always make the locally optimal choice!. Without considering the big picture.
+
+You are the banker in Monopoly with your family who has lost  many of the game piece so you only have bills in the denominations.
+
+           $5 $10 $25
+
+You need only pay out you family in the least number of bills possible so you don't run out befor the game is over. Write a function that calculate the least number of bills required for any given dollar amount that is divisible by 5.
+
+
+

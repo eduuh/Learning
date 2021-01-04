@@ -1,0 +1,18 @@
+{
+  "name": "mypractisec",
+  "version": "1.0.0",
+  "description": "",
+  "main": "time.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^8.2.1"
+  }
+}

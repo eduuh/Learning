@@ -1,0 +1,8 @@
+mergesort(list) // [7,6,1,12]
+ base case: if list.length < 2, return
+ break the list inot halves L and R  [7,6]
+ Lsorted = mergesort(L)  / 
+ Rsorted = mergeSort(R) [12]
+ return merge(Lsorted, Rsorted) // 1, 6 , 7, 12
+
+
