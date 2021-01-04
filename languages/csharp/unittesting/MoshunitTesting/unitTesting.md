@@ -103,7 +103,89 @@ Wit TDD you write your tests before writing the production code.
  In theory **Test first** if promissing.
 
 #### Fundamental of Unit Testing.
- t
+
+1. **Characteritic of good unit tests.**
+   - **First class citizen**. Writng clean, readable and maintable codes.
+   - **Should not have any logic** if(){} **foreach(){}**
+   - Each test should be called in Isolation.
+   - Test should not be too specific.
+2. **What to test and what not to test**
+     - Testable code is clean.
+     - code should be clean
+     - Test the results to functions. and verify the funciton is return the right value
+        - types of functions.
+           - query and commands.
+              - **Command** functions does and actions.
+                   - Ensure the command make the right call.
+     - Don't test language features.
+     - Dont test 3rd party code. Assume that they are well tested
+     - Always test your code.
+
+3. **Naming and orgainising tests**
+4. **Basic techniques**
+5. **Writing reliable tests**
+
+### Test Projects.
+
+Create a **Unit testing Projects** . The project has test class.
+
+Number of test >= Excutiton paths.
+
+**Namin methods**
+
+    [Methods]_[Scenario]_[ExpectedBehaviour]
+
+### Rider
+
+#### Writing Unit Tests.
+
+Ensure you write tests for all the exectution paths. Don't limit yur thinking to the current implementation, try to think beyound and see all posible scenarios and esure ther are all properly tested.
+
+Nunt provide **method** that could be used to setup object in the arrange part.
+
+```C#
+ private readonly _math;
+
+  // Setup
+  // TearDown > mostly used with intergration tests
+  //Used to do clean up for database
+
+  [Setup]
+  public void Setup()
+  {
+      _math = new Math();
+  }
+```
+
+Ignoring a test to focus on other on a specific part of the code.
+
+```csharp
+[Test]
+[Ignore("Because I Wanted To!")]
+public void Max_FirtArgumentIsGreater_ReturnThefirstArgument(){
+
+   var result = _math.Max(2,1);
+   Assert.That(result, Is.EqualTo(2));
+
+}
+```
+
+- *Test** should be **TrustWorthy**.
+Be **pragmatic**. 
+
+const of a **Software bug**
+
+Focus on delivering **quality** software with less defects. Build sotware is
+costly, you either choose to pay that cost upfront during development or later
+in production
+
+#### Parameterized tests
+
+
+
+
+
+
 
 #### Core unit testing Techiniques.
 
