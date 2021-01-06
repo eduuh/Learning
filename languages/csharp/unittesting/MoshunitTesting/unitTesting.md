@@ -199,3 +199,119 @@ in production
 
 
 
+### Testing Method that returns a value
+
+```
+
+```
+
+### Testing Void Methods/ command function
+
+Void methods are methods that does not return a value. usually for command functions. Command
+function usuall changes the state of a objects., They may do some external calls. Voids methods
+that changest the state of some object.
+
+```csharp
+
+ public class ErrorLogger
+ {
+     public string LastError { get; set; }
+
+     public event EventHandler<Guid> ErrorLogged; 
+     
+     public void Log(string error)
+     {
+         if (String.IsNullOrWhiteSpace(error))
+             throw new ArgumentNullException();
+             
+         LastError = error; 
+         
+         // Write the log to a storage
+         // ...
+
+         ErrorLogged?.Invoke(this, Guid.NewGuid());
+     }
+ }
+
+// testing methods that changes the state.
+[TestFixture]
+public void Log_whenCalled_SetTheLastErrorProperty(){
+ var logger = new ErrorLogger();
+ logger.Log("a");
+ Assert.That(logger.LastError, Is.EqualTo("a"));
+}
+
+```
+
+
+### Testing methods that throw and exception.
+
+```csharp
+[Test]
+[TestCase(null)]
+[TestCase("")]
+[TestCase(" ")]
+public void Log_InvalidError_ThrowArgumentNullException(string error){
+  var logger = new ErrorLogger();
+  // calling the method directly, use a lambda expression.
+  Assert.That(()=> logger.log(error), Throws.ArgumentNullException);
+}
+```
+#### Testiing Methods that Raise and Events.
+
+```csharp
+[Test]
+public void Log_validError_RaiseErrorLoggedEvent(){
+ var logger = new ErrorLogger();
+ // subscribe to the event and when the event is created you will be notified
+ var id = Guid.Empty;
+ logger.ErrorLogger += (sender, args)=> {id = args};
+
+ logger.log("a");
+
+ Assert.That(id, Is.Not.EqualTo(Guid.Empty));
+}
+
+```
+#### Testing Private Methods.
+
+Don't test them.
+
+#### Test Methods that return strings.
+when testing strings the results test are usually case sensitive and to ingnore the case you could
+use IgnoreCase method.
+
+```csharp
+Assert.That(result, Does.StartWith("<strong>").IgnoreCase());
+```
+
+When testing method that returns string, its better to ensure your methods are **more general**
+
+```csharp
+ // More general
+ Assert.That(result, Does.StartWith("<strong>").IgnoreCase());
+ Assert.That(result, Does.EndWith("</strong>"));
+ Assert.That(result, Does.Contain("abs"));
+```
+#### How do we know if we have enough Tests.
+
+Code coverage tools scans your code and tells you the part if your code that is not tested.
+
+Example of code covorage tools.
+
+1. Visual STudo Enterprise.
+2. Resharper code coverage.
+3. Ncover
+
+#### Testing in the Real-worlds
+
+Legacy application which are not build with testing in mind. 
+ - Write tests for the key tests.
+- Startup project which is moving fast.
+
+When you are the only developer that write testable code.   
+
+
+
+
+
