@@ -839,3 +839,155 @@ const invoiceData = {
   }
 }
 ```
+### Template Literals and Delimeters. 
+
+ES6 introduced Template Literals which provides you a wat to define
+strings with additional functinalities like:
+
+ 1. String interpolation.
+ 2. Embedded expressions.
+ 3. Multiline strings without hacks.
+ 4. String formattings.
+
+ Template Literals use backticks  rather than single or double
+ quotes. Templete literals , in the end always produce strings. A
+ template literal can be written as follows.
+
+ let user = `kelvin`;
+
+
+```js
+let user = `kelvin`
+console.log(`Hi ${user}`);
+```
+
+Template literals allow **string substitutions** that provides us a way
+to substitute any valid Javascript expression inside a string. Template
+literal can contain placeholder for string substitution using the ${}
+sytax.
+
+We can also substitute alot more that varible names. Template literals
+allow us to use expression interpolation to embed readable inline math.
+
+```js
+let a = 40
+let b = 18
+console.log(`sum of ${a} and ${b} is ${a+b}`);
+```
+Template string allow you to add multiline strings easily without using
+the new line escape sequence.
+
+```js
+// Multiline
+console.log(`I am Line one 
+I am line two`);
+```
+
+### Tagged Template Literals
+
+A more advance form of templaet literal are tageed template literals .
+Tagged template transforms a Template String by placin a function name
+before the template string. Fox example.
+
+
+```js
+output `Hi , my name is ${name} and I love ${language}`
+```
+
+### Iterating with for..of
+
+Over the last two decade in javascript, we have been iterating using the
+**for**, **for-in** and **forEach** in case of arrays. ES6 introduced
+another structure for the **for..of** loop which allows iterating over
+interable objects such as arryay , map, set, string, etc.
+
+
+the common way includes
+
+```js
+let names = ['matt', 'smith', 'jack']
+
+for (let i = 0; i< names.length; i++) {
+    console.log(names[i]);
+}
+```
+
+
+```js
+let names = ['matt', 'smith', 'jack']
+
+for (let name of names) {
+   console.log(name);
+}
+```
+the iteration become lesser and cleaner with the new iteration unlike the
+first one which we had to maintain the value of i in each iteration step.
+
+Note the value you llop over using the **for..of** must be an iterable. An
+iterable is simple an objec that is able to produce an iterator, which the
+loop then uses. The for...of llop doen't just work for arrarys but also
+other iterable leke DOM Nodelist object, the argument object and string
+objects.
+
+Just like witl arrays, the for_of make it easy to  iterate over these
+non_array sequence. 
+
+### summary
+
+New syntax comes with an aim in mind.
+
+1. Help in writing cleaner code,
+2. debugging faster.
+3. Implementing logic in fewer lines
+4. Avoiding confusion.
+
+### Destructuring.
+
+Object literals and arrays are probably some of the most widely notations
+in JavaScript. The popularity of these JavaScript notation is further
+extended to even outside the language with there presence in thn JSON data
+format.
+
+#### Destructuring of Objects and Arrays
+
+Destructuring is basically a convinient way of breaking the data structure
+into smaller pieces to access its data more easily and extract multiple
+values from Objects or Arrays. T understand destructuring better, simply
+think of it as a structured assignment from an object or array. Consider
+the following example.
+
+```js
+var numbers = {
+    a: 4, b: 7, c: 5
+}
+
+var a = numbers.a,
+    b = numbers.b,
+    c = numbers.c
+
+console.log(a,b,c);
+```
+ES6 makes this pattern of structured assignment simpler through a new and
+dedicated syntax called **destructuring**;
+
+This syntax eliminates the need for the temporary, intermidiate variables -
+letters and numbers. Consiter the following examples.
+
+```js 
+var numbers = {
+    a: 4, b: 7, c: 5
+}
+
+var [x,y,z] = ["a","b","c"];
+var {a:a, b:b , c:c} =  numbers;
+
+console.log(a,b,c);
+```
+Fetching information from objects and arrays and putting them into local
+variables needet a lot more code. Imagine you needet to extract value from
+a very large object or array and store themin variable of the same name.
+You would have to write a lot of code assigning value to them one by one,
+but using destructruing, this process gets reduced to a single assingment
+statement.
+
+### Object destructuring syntax
