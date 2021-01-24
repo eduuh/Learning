@@ -1,0 +1,14 @@
+variable in loops
+// Empty array
+
+// The for loop
+let arr = []
+
+for (var i = 0; i < 3; i++) { // 0 < 1
+    arr.push(function(){
+        return i;
+    });               //[f0.i,f1.i,f2.i]
+}
+
+let value = arr[0](); // undefined
+console.log(value);   // undefinde
