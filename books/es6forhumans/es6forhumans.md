@@ -1,9 +1,7 @@
-
-The latest Standard of Javascript: 
+The latest Standard of Javascript:
 
 The evolution of javascript, more specifically ECMAScript, is primarily community driven and TC39 is
 the official name of the committee in charge of it.
-
 
 The members of the committee represent varous stakeholders like the major browser companies adn other
 invited members. They meed and communicate on a reqular basis and are tasked with maintaining and
@@ -19,15 +17,13 @@ from the developer. Since the TC39 has a large number of participants, makind it
 collaborative design work, usuall one or two committee members are assigned as champions responsible
 form maintaining a proposal and to do design work and report back to the committee.
 
-
-
 From a proposal to become a standard , it has to go through multiple stages. The initial feature sketch
 of the proposal, which is alse refered to as **strawman proposal** is the first stage discussed by the
-commiteed and if it agree that is is important, it is considered an official proposal. 
+commiteed and if it agree that is is important, it is considered an official proposal.
 
 The proposed feature then needs to implemendet at least by two major javascript engines to get feedback
 from the community and evolve the proposal further. Once the proposal passes through these stages and
-incoporates feedback, TC39 approves it and will include it in the new edition  of the ECMAScript
+incoporates feedback, TC39 approves it and will include it in the new edition of the ECMAScript
 standard.
 
 Histroy of ECMA, ECMAScript and Javascript.
@@ -44,16 +40,16 @@ called it Javascript.
 
 The initial versions ES1 and ES2 wer released in 1997 and 1998, but in 1999, the ES3 release was a
 major upgrade with new features like reqular expression, improve string handling, more control
-statements, better error handling, and try catch exception handling. 
+statements, better error handling, and try catch exception handling.
 
 After the release fo ES3, work on ES4 was well under way with many radical changes and massive scope.
 
-   1. Updated feature included new syntxx.
-   2. Modules.
-   3. Classes
-   4. Classical Inheritance.
-   5. Private object members.
-   6. Optimal type annotation.
+1.  Updated feature included new syntxx.
+2.  Modules.
+3.  Classes
+4.  Classical Inheritance.
+5.  Private object members.
+6.  Optimal type annotation.
 
 The proposed changes let to many differences, both technical and political, among various stakeholders
 in the community, resulting it being put on hold in 2003. Parts of the proposed features made their way
@@ -64,7 +60,7 @@ this time there was a big split in the community and tow major groups had formed
 the way forward.
 
 The alternae version championed by campanies like Microsoft and Yahoo with feature additions and
-improvements to the existin spec was referred to as ECMAScript3.1. 
+improvements to the existin spec was referred to as ECMAScript3.1.
 
 Because there was no consensus between the groups the future of Javascript was questionable, ther was
 no major progress for a few years. Finally, in 2008 TC39 can to a consensus betweent ES4 and ES3.1.
@@ -82,7 +78,7 @@ matured the specification was called ECMAScript6.
 ES6 took a long time to become official. The deadline for ES6 propasal was May 2011 and no major
 porposals were considered after that. but starting with later versions TC39 decided to time-box release
 and release a new version every year with small incremental changes using whatever features are
-approved by that time. 
+approved by that time.
 
 Hence the official name of ES6 was changed to ECMAScript 2015, but the name ES6 was so widely used for
 years that ES2015 is sill commonly refered to as ES6 and that's why
@@ -94,16 +90,15 @@ But going forwardd, ES version will be offically refered to by their year of rel
 ES5, we are referring3 to the broader changes in ES2015 is still commonly referrded to as ES6 and
 that's why we chose to refer to the new specification as ES6 throughout this book.
 
-
-
-## Es6 
+## Es6
 
 The specification drafts are divided into four major parts.
-  1. the goals
-  2. The requirements
-  3. The means.
-  4. The Theme.
-  
+
+1. the goals
+2. The requirements
+3. The means.
+4. The Theme.
+
 Many Javascript environments including web browser and Node.js are actively working on imlpementing all
 the feature if ECMAScript 6 and later. Until all of ES6 and later. It will take sometime before all
 browser fully support the latest version of Ecmascript.
@@ -114,14 +109,14 @@ in which use use special tools to transform ES.
 
 Some ES6 features can work simply by using **polyfills** and **shims**, which are simple patterns that define a new
 behaviour in an older environment. You can also run and transpile small piece of ES6 code online in your browser
-through ES6 REPLs like **jsfiddle** and **babeljs**. 
+through ES6 REPLs like **jsfiddle** and **babeljs**.
 
 But for larger project, you would need to use any of the available transpilers. We recommend using Babel, which is one
 of the most popular Javascript transpilers available tody.
 
 ## setting up ES6 Using Babel and Webpack.
 
-In order to use ES6 in your projects today, there are a sete of build tools you will need to get thing up and running. 
+In order to use ES6 in your projects today, there are a sete of build tools you will need to get thing up and running.
 
 ### Transpiling with Babel.
 
@@ -129,11 +124,11 @@ Babel.js is an awesome tool that lets you transpile your ES6 code into ES5 code 
 Javascript envrionments. Babel support the latest version of Javascript through syntax transformers, and these plug-in
 allow you to use new syntax without waiting for browser support.
 
-Ensure  node and npm are installed
+Ensure node and npm are installed
 
 **npm install -g babel-cli**
 
-Now , you can manually transpile to code with the command Line using. 
+Now , you can manually transpile to code with the command Line using.
 
 **babel-node filename.js**
 
@@ -142,7 +137,6 @@ projects. so lets set up es6 started kit that will help you automate the build p
 process more effient.
 
 ### setting up an ES6 Boilerplate
-
 
 ### start a New project.
 
@@ -153,6 +147,7 @@ mkdir es6-boilerplate
 cd es6-boilerplate
 npm init –yes
 ```
+
 npm init creates a new project with its own package.json and –yes flag prevents npm from promting you from any option and will use the
 defaults.
 
@@ -171,7 +166,8 @@ You can install babel into your project very easily using the following npm pack
 ```bash
 npm install --save-dev babel-loader babel-core babel-preset-es2015
 ```
-The next step is to configure babel to use ES2015 presets by adding a new file 
+
+The next step is to configure babel to use ES2015 presets by adding a new file
 
 create a new index.html file nad index.js file in the root directory of your project.
 
@@ -185,13 +181,14 @@ configuration object is exported out of thi module
 
 ```javascript
 module.exports = {
-    entry: './index.js',
-    output: {
-        path: './dist',
-        filename: 'bundle.js'
-    }
-}
+  entry: "./index.js",
+  output: {
+    path: "./dist",
+    filename: "bundle.js",
+  },
+};
 ```
+
 webpack will analyze all the dependecies and generate a buedled
 output which inclued all the dependecy modules.
 
@@ -206,67 +203,64 @@ fox examles, babel-loaders uses Babel to load ES2015 files.
 
 ```javascript
 module.exports = {
-    entry: './index.js',
-    output: {
-        path: './dist',
-        publicPath: '/dist/',
-        filename: 'bundle.js'
-    },
+  entry: "./index.js",
+  output: {
+    path: "./dist",
+    publicPath: "/dist/",
+    filename: "bundle.js",
+  },
   module: {
-      rules: [{
+    rules: [
+      {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
-      }]
-  }
-}
+        use: "babel-loader",
+      },
+    ],
+  },
+};
 ```
 
-
-
 The above configuration implies the following:
- 
+
 1. ‘./index.js’ is the entry point of the application.
- 
+
 2. Output will be generated in ‘./dist/bundle.js’.
- 
-3. We are processing every .js using the babel-loader, excluding 
-node_modules to avoid external libraries to go through Babel, 
-slowing down compilation.
+
+3. We are processing every .js using the babel-loader, excluding
+   node_modules to avoid external libraries to go through Babel,
+   slowing down compilation.
 
 Add the following code to your html file.
 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <h1>ES6 Boilearplate</h1>
-  <p>Check Console for detailes</p>
-  <div id="main">
-    Hello edwin
-  </div>
-  <script src="dist/bundle.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>ES6 Boilearplate</h1>
+    <p>Check Console for detailes</p>
+    <div id="main">Hello edwin</div>
+    <script src="dist/bundle.js"></script>
+  </body>
 </html>
 ```
 
 To compile your .js file, you can run the following command in your terminal:
 webpack
 You can also use following additional flags with webpack:
-• 
+•
 webpack for building once for development.
-• 
+•
 webpack -p for building once for production (minification).
 
-
-wwebpack -w for continuous incremental build in development 
+wwebpack -w for continuous incremental build in development
 (fast!).
-• 
+•
 webpack -d to include source maps.
 
 ## setting up a development server
@@ -274,10 +268,10 @@ webpack -d to include source maps.
 To start a development server to test your code, you can run the
 wollowing command.
 
-
 ```
 wepack-dev-server -d --progress --colors
 ```
+
 This binds a small node-express server on localhost:8080, which
 servers your static asserts as well as the bundle (compliled
 automatically). It automatically update the browser page when a
@@ -290,10 +284,6 @@ In the following code snippet obj is a contant but the value it point
 to is mutable therefore you can add a property to it but you cannot
 assing a different value to obj.
 
-
-
-
-
 ```javascript
 const obj = {};
 obj.key = 42;
@@ -304,24 +294,26 @@ const obj = Object.freeze({});
 obj.key = 42;
 console.log(obj);   // {}
 ```
+
 ## variable Declarations in loops.
 
-For loops (for, for-in, for-of) let you declare variables in their heads. But the way 
-you declare these variables using var, let, or const changes things. Let’s look at each of 
-
+For loops (for, for-in, for-of) let you declare variables in their heads. But the way
+you declare these variables using var, let, or const changes things. Let’s look at each of
 
 ```js
-let arr = [] // lenght = 0
+let arr = []; // lenght = 0
 
-for (var i = 0; i < 3; i++) { //0 < 1
-    arr.push(function(){
-        return i;
-    });
+for (var i = 0; i < 3; i++) {
+  //0 < 1
+  arr.push(function () {
+    return i;
+  });
 }
 
 let value = arr[0](); // 3
-console.log(value);   // 3
+console.log(value); // 3
 ```
+
 The output in 3 because a closure gets formed over the variable i at
 the end of the loop. I is set to 3 and each instance of i in the body
 refers to the same bindings. Therefor, the function always returns 3.
@@ -330,16 +322,17 @@ Now let's take a look at the case where i is declared using let.
 Using let in loops.
 
 ```js
-let arr = [] // lenght = 0
+let arr = []; // lenght = 0
 
-for (let i = 0; i < 3; i++) { //0 < 1
-    arr.push(function(){
-        return i;
-    });
+for (let i = 0; i < 3; i++) {
+  //0 < 1
+  arr.push(function () {
+    return i;
+  });
 }
 
 let value = arr[0](); // 0
-console.log(value);   // 0
+console.log(value); // 0
 ```
 
 When we use let in a **for-loop**, each iteration of the loop will
@@ -349,19 +342,20 @@ values of i.
 In the case of const, it works similar to var because the initial
 assigned value to a **const variable** will not change again.
 
-
 ```js
-let arr = [] 
+let arr = [];
 
-for (const i = 0; i < 3; i++) { //0 < 1
-    arr.push(function(){
-        return i;
-    });
+for (const i = 0; i < 3; i++) {
+  //0 < 1
+  arr.push(function () {
+    return i;
+  });
 }
 
 let value = arr[0](); // 0
-console.log(value);   // 0
+console.log(value); // 0
 ```
+
 TypeError: Assingment to constant variable.
 
 #### Recomendation always use let in loops.
@@ -370,9 +364,10 @@ TypeError: Assingment to constant variable.
 
 ```js
 function fn(params) {
-  let params;  // SyntaxError: Identifiers 'params' has already been declared
+  let params; // SyntaxError: Identifiers 'params' has already been declared
 }
 ```
+
 Doing the same with var does nothing, because it just equivalet to
 re-declaring a variable. Another way of fixing the issue would be
 using a let inside a block, but the new varible declared will only
@@ -390,7 +385,7 @@ Functions in Javascript can be used to create Immediately invoked function expre
 
 Arrow functions are functions expressions and are not function declarations. They are anonymous function expressions that have no named reference for the purpose of recursion or event binding or unbindings.
 
-Arrow functions do save us a few lines of codes and characters, but the real purpose of arrow functions is to handle the this keyworrd within functions. this behave differenterly inside an arrow function. 
+Arrow functions do save us a few lines of codes and characters, but the real purpose of arrow functions is to handle the this keyworrd within functions. this behave differenterly inside an arrow function.
 
 ## this keyword
 
@@ -401,17 +396,18 @@ If you're in strict mode (use strict), this would be undefined.
 
 ```js
 let myobj = {
-    name: 'fancy',
-    operation: function() {
-      console.log(this);
-    }
-}
+  name: "fancy",
+  operation: function () {
+    console.log(this);
+  },
+};
 
-console.log(myobj.operation())
+console.log(myobj.operation());
 
 let x = myobj.operation;
-x()
+x();
 ```
+
 TODO: check the differece between function invocation and method
 invocation.
 
@@ -421,6 +417,7 @@ will have to use .call() method.
 ```javascript
 x.call(myobj);
 ```
+
 3. Constructor Invocation
 
 ```
@@ -444,64 +441,61 @@ function are designed to lexically bind the context, which mean that this
 refers to the encolosing context where the arrow function is defined.
 
 ```js
-function Employee(name,departure, salary) {
-   this.name = name;
-   this.departure = departure;
-   this.salary = salary;
-  console.log(
-     "Welcome " + this.name + "!"
-  )
+function Employee(name, departure, salary) {
+  this.name = name;
+  this.departure = departure;
+  this.salary = salary;
+  console.log("Welcome " + this.name + "!");
 
-  this.getInfo = function() {
-     return function() {
-       console.log(this.name + this.departure);
-     };
-  }
+  this.getInfo = function () {
+    return function () {
+      console.log(this.name + this.departure);
+    };
+  };
 }
 
-let edwin = new Employee('Edwin', 'sale', 20000);
+let edwin = new Employee("Edwin", "sale", 20000);
 
 let printInfo = edwin.getInfo();
 printInfo();
 ```
+
 Here, printInfo refers to the inner function and since we are simply
 making a function invocation, this refer to the global object that does
 not have any employ properties and hence produces undefined whenever a
 property on this is used.
 
 ```js
-function Employee(name,departure, salary) {
-   this.name = name;
-   this.departure = departure;
-   this.salary = salary;
-  console.log(
-     "Welcome " + this.name + "!"
-  )
+function Employee(name, departure, salary) {
+  this.name = name;
+  this.departure = departure;
+  this.salary = salary;
+  console.log("Welcome " + this.name + "!");
 
-  this.getInfo = function() {
-     return function() {
-       console.log(this.name + " from" + this.departure);
-     };
-  }
+  this.getInfo = function () {
+    return function () {
+      console.log(this.name + " from" + this.departure);
+    };
+  };
 }
 
-let edwin = new Employee('Edwin', 'sale', 20000);
+let edwin = new Employee("Edwin", "sale", 20000);
 
 let printInfo = edwin.getInfo();
 printInfo();
 ```
+
 Arrow functions does not change their context on invocation. Consider the
 following example.
 
 ```js
 function Employee() {
-   this.firstName = 'Edwin',
-    this.department = 'HR',
-    this.salary = 45000,
-
-    this.getContext = () => {
-        console.log(this);
-    }
+  (this.firstName = "Edwin"),
+    (this.department = "HR"),
+    (this.salary = 45000),
+    (this.getContext = () => {
+      console.log(this);
+    });
 }
 
 let edwin = new Employee();
@@ -510,29 +504,30 @@ edwin.getContext();
 let context = edwin.getContext;
 context();
 ```
+
 the context of the arrow function was set on declaration and it cannot be
 changed. An important thing to note here is that you cannot "rebind" an
-arrow function. The context is always fixed. 
-
+arrow function. The context is always fixed.
 
 ```js
 var details = {
-    number: 45,
-    operation: function() {
-       return () => console.log(this.number) 
-    }
-}
+  number: 45,
+  operation: function () {
+    return () => console.log(this.number);
+  },
+};
 
 var details2 = {
-    number: 56
-}
+  number: 56,
+};
 
 details.operation().bind(details2)();
 ```
+
 We are setting the details2 number to 56 but we know we cannot bind a new
 object to the arrow function. The engine does not throw any erro, it just
 ignores the bind completely. So 45 is printed even if we call the
-operation method  calls to **bind**, **call** or **apply** we nod be able
+operation method calls to **bind**, **call** or **apply** we nod be able
 to change to value of this.
 
 the value of this keyword cannot be changed and will remain constant but
@@ -549,21 +544,20 @@ with new since they do not have the construct method and cannot be used
 as constructors. The will produce an error whe used with new.
 
 ```js
-var newFn = () => {
-    
-}
+var newFn = () => {};
 
 var obj = new newFn();
 ```
+
 Normally when a function is declared in ES5, it has a prototype property
 that is used in construction functions. But since you cannot use new on
-an arrow function, there is no need for a prototype. 
+an arrow function, there is no need for a prototype.
 
 ### Using Arrow Functions
 
 If you have functions that use the var self = this hack to deal with the
 this issue, or .bind(this) call for proper this binding, arrow functions
-were build to help out with this exact problem. 
+were build to help out with this exact problem.
 
 ```js
 
@@ -578,16 +572,17 @@ $$('.btn').on('click', function() {
         }, 1000);
 
 ```
+
 Using arrow functions the above code becomes.
 
-
 ```js
-$('.btn').on('click', function() {
-        setTimeout(() => {
-                $(this).toggleClass('btn-active');
-        }, 1000);
+$(".btn").on("click", function () {
+  setTimeout(() => {
+    $(this).toggleClass("btn-active");
+  }, 1000);
 });
 ```
+
 With arrow function code become shorter and more concise syntax, arrow
 function handle the this keywork a little differently, making it easier
 to manage the code in many situatiations.
@@ -600,7 +595,7 @@ have the other parametrs assigned a value.
 Functions in Javascript are unique in the aspect that they allow to call
 them by appsing any number of parameters irrespective of the parameters
 declared in the function definition. Thi gives the developer an
-opportunity to use any value for the parameter in case no argument  is
+opportunity to use any value for the parameter in case no argument is
 specifiend
 
 In ES5, if the argument is not specified, its value would be set to
@@ -608,41 +603,41 @@ undefined. The pattern commonly used to set default for unspecified
 parameters was something like this
 
 ```js
-function getSum(a,b) {
-  a = (a !== undefined) ? a : 1;
-  b = (b !== undefined) ? b : 45;
+function getSum(a, b) {
+  a = a !== undefined ? a : 1;
+  b = b !== undefined ? b : 45;
   console.log(a + b);
 }
 
-getSum()
-getSum(1, 4)
-getSum(4)
-getSum(null, 5)
+getSum();
+getSum(1, 4);
+getSum(4);
+getSum(null, 5);
 ```
+
 ES6 tries to streamline this process by giving us the ability to set a
 default value to the parameter in the function declaration stement
 itselef.
 
 ```js
-function getSum(a = 4,b = 45) {
+function getSum(a = 4, b = 45) {
   console.log(a + b);
 }
 
-getSum()
-getSum(1, 4)
-getSum(4)
-getSum(null, 5)
+getSum();
+getSum(1, 4);
+getSum(4);
+getSum(null, 5);
 ```
+
 When we call the function, if we do not specify any argument, the default
 values of the parametr gets used. The syntax to specify a default value
-is the parameter followed by an equal sign  an expression after that.
-
-
+is the parameter followed by an equal sign an expression after that.
 
 ```js
-var getAnswer = function(number = 45, item = "universe") {
-   console.log(number + " is the answer to " + item);
-}
+var getAnswer = function (number = 45, item = "universe") {
+  console.log(number + " is the answer to " + item);
+};
 
 getAnswer(undefined, "life");
 ```
@@ -656,22 +651,20 @@ expression as default values for parameters. Default vale expression are
 evaluated lazily, meaning they're run only if a parameter's argument is
 not present or is undefined.
 
-
 ```js
-var getFirstName = () =>  "Edwin";
+var getFirstName = () => "Edwin";
 
-var getAnswerTwo = function(fistname = getFirstName(), item = "universe") {
-   console.log(fistname + " is the answer to " + item);
-}
+var getAnswerTwo = function (fistname = getFirstName(), item = "universe") {
+  console.log(fistname + " is the answer to " + item);
+};
 
 getAnswerTwo();
 ```
 
 Checking the number of arguments.
 
-
 ```js
- console.log(arguments.length);
+console.log(arguments.length);
 ```
 
 **arguments.lenght** only returns the number of arguments passed to it.
@@ -679,16 +672,16 @@ Checking the number of arguments.
 Another awesome feature of the default parameters before it is the fact
 that they work even when creating a dynamic function.
 
-
 ```js
 var getNumber = new Function("number = 45", "return number;");
 console.log(getNumber());
 ```
+
 ### Rest and Spread Operators.
 
 Javascript has always had the feature of allowing functions to be passed
 fewew or more parameters than formally specified in the function
-declared without any problems. 
+declared without any problems.
 
 Many modern programing languages provides the ability for the function
 to accept a variable number of parametrs. ES6 introduces this much
@@ -699,19 +692,19 @@ a data container data type like an array. The rest parametres simplify
 this entire process.
 
 ```js
-var showCollection = function(id, ...collection) {
-   console.log(collection instanceof Array);
-}
+var showCollection = function (id, ...collection) {
+  console.log(collection instanceof Array);
+};
 
 showCollection(45, "movie", "music");
 ```
+
 The ... symbol is the **rest symbol**. It precedes a named parameter.
 This named parameter will become an Array that will just gather up all
-the remaining parameters passed to the function. 
+the remaining parameters passed to the function.
 
 Collection is set to an Array. To make this more clear if we execuet the
 above this way,
-
 
 The rest parameter gathers up all the remaining parameters after the id
 parametre and make it into an array called collection. Excluding the
@@ -731,10 +724,9 @@ console.log(getFirst(1,3)); // 1
 
 ### The Spread Operator.
 
-The spread operator, which is also denoted by ***...** before an array.
+The spread operator, which is also denoted by **\*...** before an array.
 does essentiall the reverse operation of a rest operator. It spreads out
 an array and passes the value into the specified function.
-
 
 let values = [200,500,400];
 let newSet = [400, ...values, 600];
@@ -745,10 +737,9 @@ a single array, while in case of the spread operator you can specify a
 single array that can be split into seperate argument that can be passed
 into a function or method.
 
-
 ```js
-let number = [-45, 45,64,84,64];
-console.log(Math.max(...number,804));
+let number = [-45, 45, 64, 84, 64];
+console.log(Math.max(...number, 804));
 ```
 
 The spread operator helps in handling arguments to passed to a function
@@ -759,18 +750,19 @@ If you spread out an empty array which might be missing two values like
 [,,] the last comman is considered a trailing comma that is ignored. The
 parameters spread out would be undefined.
 
-### 0bject Literal Extensions  
+### 0bject Literal Extensions
 
 ES6 introduces some new extensions for Object Literals.
-   To declare object literals, currently using variables we have to use
-   the follwoing coding pattern:
+To declare object literals, currently using variables we have to use
+the follwoing coding pattern:
 
 ```javascript
-var price = 4.4, quantity = 4
+var price = 4.4,
+  quantity = 4;
 var invoiceData = {
   price: price,
-  quantity: quantity
-}
+  quantity: quantity,
+};
 console.log(invoiceData);
 ```
 
@@ -779,11 +771,13 @@ offers a shorthand making writing this simpler. Check the following
 example
 
 ```js
-const price = 4.5, quantity = 6
+const price = 4.5,
+  quantity = 6;
 const invoiceData = {
-    price, quantity
-}
-console.log(invoiceData)
+  price,
+  quantity,
+};
+console.log(invoiceData);
 ```
 
 We can just list the field once and the object literal in ES6 is smart
@@ -791,20 +785,22 @@ enough to interpret that we want a field called price and want the
 context data set to the value of the variable called price.
 
 ES6 also gives us a short notation to write functions in an object
-literal. 
-
+literal.
 
 ```js
-const price = 4.5, quantity = 6
+const price = 4.5,
+  quantity = 6;
 const invoiceData = {
-    price, quantity,
-   calculateTotal(){
-      return price * quantity;
-   }
-}
+  price,
+  quantity,
+  calculateTotal() {
+    return price * quantity;
+  },
+};
 
-console.log(invoiceData.calculateTotal())
+console.log(invoiceData.calculateTotal());
 ```
+
 When you use the function shorthand withing an objet literal, this
 refers to the context of te code just like an arrow function. It does
 not refer to the object that contains the function. It behave exactly
@@ -812,52 +808,51 @@ like an arrow function.
 
 Note you can use dynamic field names in an object literal.
 
-
 ```js
-const field = 'dynamicRandom'
-const price = 4.66
-const quantity = 6
+const field = "dynamicRandom";
+const price = 4.66;
+const quantity = 6;
 const invoiceData = {
   [field]: price,
   quantity,
-  calculateTotal(){
-      return this.price * this.quantity;
-  }
-}
+  calculateTotal() {
+    return this.price * this.quantity;
+  },
+};
 
-console.log(invoiceData)
+console.log(invoiceData);
 ```
-You could even make naming properties more dynamic.
 
+You could even make naming properties more dynamic.
 
 ```js
 const invoiceData = {
   [field + "-01"]: price,
   quantity,
-  calculateTotal(){
-      return this.price * this.quantity;
-  }
-}
+  calculateTotal() {
+    return this.price * this.quantity;
+  },
+};
 ```
-### Template Literals and Delimeters. 
+
+### Template Literals and Delimeters.
 
 ES6 introduced Template Literals which provides you a wat to define
 strings with additional functinalities like:
 
- 1. String interpolation.
- 2. Embedded expressions.
- 3. Multiline strings without hacks.
- 4. String formattings.
+1.  String interpolation.
+2.  Embedded expressions.
+3.  Multiline strings without hacks.
+4.  String formattings.
 
- Template Literals use backticks  rather than single or double
- quotes. Templete literals , in the end always produce strings. A
- template literal can be written as follows.
+Template Literals use backticks rather than single or double
+quotes. Templete literals , in the end always produce strings. A
+template literal can be written as follows.
 
- let user = `kelvin`;
-
+let user = `kelvin`;
 
 ```js
-let user = `kelvin`
+let user = `kelvin`;
 console.log(`Hi ${user}`);
 ```
 
@@ -870,10 +865,11 @@ We can also substitute alot more that varible names. Template literals
 allow us to use expression interpolation to embed readable inline math.
 
 ```js
-let a = 40
-let b = 18
-console.log(`sum of ${a} and ${b} is ${a+b}`);
+let a = 40;
+let b = 18;
+console.log(`sum of ${a} and ${b} is ${a + b}`);
 ```
+
 Template string allow you to add multiline strings easily without using
 the new line escape sequence.
 
@@ -889,9 +885,8 @@ A more advance form of templaet literal are tageed template literals .
 Tagged template transforms a Template String by placin a function name
 before the template string. Fox example.
 
-
 ```js
-output `Hi , my name is ${name} and I love ${language}`
+output`Hi , my name is ${name} and I love ${language}`;
 ```
 
 ### Iterating with for..of
@@ -901,25 +896,24 @@ Over the last two decade in javascript, we have been iterating using the
 another structure for the **for..of** loop which allows iterating over
 interable objects such as arryay , map, set, string, etc.
 
-
 the common way includes
 
 ```js
-let names = ['matt', 'smith', 'jack']
+let names = ["matt", "smith", "jack"];
 
-for (let i = 0; i< names.length; i++) {
-    console.log(names[i]);
+for (let i = 0; i < names.length; i++) {
+  console.log(names[i]);
 }
 ```
-
 
 ```js
-let names = ['matt', 'smith', 'jack']
+let names = ["matt", "smith", "jack"];
 
 for (let name of names) {
-   console.log(name);
+  console.log(name);
 }
 ```
+
 the iteration become lesser and cleaner with the new iteration unlike the
 first one which we had to maintain the value of i in each iteration step.
 
@@ -929,8 +923,8 @@ loop then uses. The for...of llop doen't just work for arrarys but also
 other iterable leke DOM Nodelist object, the argument object and string
 objects.
 
-Just like witl arrays, the for_of make it easy to  iterate over these
-non_array sequence. 
+Just like witl arrays, the for_of make it easy to iterate over these
+non_array sequence.
 
 ### summary
 
@@ -958,31 +952,37 @@ the following example.
 
 ```js
 var numbers = {
-    a: 4, b: 7, c: 5
-}
+  a: 4,
+  b: 7,
+  c: 5,
+};
 
 var a = numbers.a,
-    b = numbers.b,
-    c = numbers.c
+  b = numbers.b,
+  c = numbers.c;
 
-console.log(a,b,c);
+console.log(a, b, c);
 ```
+
 ES6 makes this pattern of structured assignment simpler through a new and
 dedicated syntax called **destructuring**;
 
 This syntax eliminates the need for the temporary, intermidiate variables -
 letters and numbers. Consiter the following examples.
 
-```js 
+```js
 var numbers = {
-    a: 4, b: 7, c: 5
-}
+  a: 4,
+  b: 7,
+  c: 5,
+};
 
-var [x,y,z] = ["a","b","c"];
-var {a:a, b:b , c:c} =  numbers;
+var [x, y, z] = ["a", "b", "c"];
+var { a: a, b: b, c: c } = numbers;
 
-console.log(a,b,c);
+console.log(a, b, c);
 ```
+
 Fetching information from objects and arrays and putting them into local
 variables needet a lot more code. Imagine you needet to extract value from
 a very large object or array and store themin variable of the same name.
@@ -991,3 +991,101 @@ but using destructruing, this process gets reduced to a single assingment
 statement.
 
 ### Object destructuring syntax
+
+Object literals and arrays aer probably some to the most widely
+used notation in javascript.
+Objects and arrays are commonly used to group data in javascript
+and ther exist various pattersn to systematically fetch data from
+these defined structure when we need them. ES6 further extends
+this process by makin it easier and simplify throug a process
+called destructuring.
+
+### Destructuring of object and Arrays
+
+Destructuring is a convinient way of breakin the data structur
+into smaller pieces to access more easily and extract multiple
+values from objects and Arrays. To undertand destructuring better,
+simply think of it a structure assingment object or array.
+
+with destructuring be sure you always have an assingment in the
+statement, that is right_hand is required for the statement.
+
+```js
+var { x, y }; //sytax error
+let { x, y, z }; //sytax error
+const { x, y, z }; //sytax error
+```
+
+### Assingment using Destructuring
+
+But destructuring can also be used in assigment statement. You must
+always use parentheses around an object destructruing assingment
+statement. This is because an opening curly brack denotes the start
+of a block statement. The parenteses around it denotes that the
+curly brace should be interpreted as an expression used in
+assingment statement using destructruing.
+
+```js
+console.log("focus on the next output edd");
+let item = {
+    name: "Apples",
+    quantity: 5,
+  },
+  name = "Oranges",
+  quantity = 5;
+
+({ name, quantity } = item);
+
+console.log(name, quantity); // "Apples" 5
+```
+
+### Default values
+
+When using destructruing to assign a value to a variable, using an
+object that does not have the corresponding property name, its value
+is set to undefined.
+
+```js
+var itemDefault = {
+  fruit: "Apples",
+  number: 5,
+};
+
+var { fruit = "Mango", number = 2, values = 54 } = itemDefault;
+
+console.log(name);
+console.log(quantity);
+console.log(values);
+```
+
+You can also use default values in the long form of a destructruing
+assigment statement. Avoid arrow and object in destructruing since it
+can lead to a very confusing behaviour.
+
+### Nested Destructuring
+
+The destructruing syntax , very much like the object literal syntax,
+can be used to navigate inside nested obects to retrieve information.
+If the value you're destructruing have nested objects or arrays, you
+can destructure those nested values as well.
+
+The : denotes the location we need to go and the right side assigns a
+value. If a curly brace is present after the colon, it denotes that
+the destination is nested in the next depth level of the object an so
+on.
+
+If you tried to access the apple object you will get **undefined
+reference error**.
+
+```js
+let {
+  apple: {},
+} = nestedValues;
+```
+
+It would make more sence to create a binding for the apple object
+using the = operator.
+
+```js
+let { apple = {} } = nestedValues;
+```
