@@ -211,3 +211,241 @@ Installing nodemon and making changes to the start script.
 
 Our application usually have custome types. A set of fields. Example of creating custom types for a
 blogiing application you could have **\*users** , **comments\*** , **posts.\***
+
+#### Working with Arrays
+
+```graphql
+type Query {
+  grades: [Int]!
+}
+
+
+// The resolvers
+grades(parent, args, ctx,info) {
+  return [5, 55, 58, 55];
+},
+```
+
+The code that show how to get in some values from client to the server.
+
+```graphql
+import { GraphQLServer } from "graphql-yoga";
+
+//Five scalar value for graphql. string, Resolver, int, float, ID
+// Types definition
+const typeDefs = `
+   type Query {
+    me: User!
+    post: Post!
+    grades: [Int]!
+    greeting(name: String, position: String): String!
+    sum(numbers: [Float]!): Float!
+   }
+
+   type User {
+     id: ID!
+     name: String!
+     email: String!
+     age: Int
+   }
+
+   type Post {
+     id: ID!
+     title: String!
+     body: String!
+     published: Boolean!
+   }
+`;
+
+// applicaiton schema
+// Resolver
+const resolvers = {
+  Query: {
+    sum(parent, args, ctx, info) {
+      if (args.numbers.length === 0) {
+        return 0;
+      }
+
+      return args.numbers.reduce((accumulator, currentValue) => {
+        return accumulator + currentValue;
+      });
+    },
+    greeting(parent, args, ctx, info) {
+      if (args.name) {
+        return `hello ${args.name}`;
+      } else {
+        return `Hello`;
+      }
+    },
+    grades(parent, args, ctx, info) {
+      return [5, 55, 58, 55];
+    },
+    me() {
+      return {
+        id: "instinst",
+        name: "Edwin",
+        email: "edwin@test.com",
+        age: 56,
+      };
+    },
+    post: () => {
+      return {
+        id: "isntian",
+        title: "The Awakening of Evil",
+        body: "Evil is not a good thing",
+        published: true,
+      };
+    },
+  },
+};
+
+const server = new GraphQLServer({
+  typeDefs,
+  resolvers,
+});
+
+server.start(() => {
+  console.log("The server is up!");
+});
+```
+
+returning a arrow of custom types.
+
+```graphql
+import { GraphQLServer } from "graphql-yoga";
+
+//Five scalar value for graphql. string, Resolver, int, float, ID
+// Types definition
+
+const users = [
+  {
+    id: "8",
+    name: "Kdotn",
+    email: "kdotn@test.com",
+  },
+
+  {
+    id: "5",
+    name: "Eduuh",
+    email: "eduuh@test.com",
+  },
+
+  {
+    id: "5",
+    name: "Kamau",
+    email: "kamau@test.com",
+  },
+
+  {
+    id: "6",
+    name: "Musaya",
+    email: "musaya@test.com",
+  },
+];
+
+const posts = [
+  {
+    id: "isn4",
+    title: "The Next leve code of Evil",
+    body: "Evil is not a good code, its honourable in KENYA",
+    published: true,
+  },
+  {
+    id: "isn56",
+    title: "The Depend Hansle",
+    body: "Evil is not a good thing, its Hansle",
+    published: true,
+  },
+  {
+    id: "isn6",
+    title: "The Awakening of Evil",
+    body: "Evil is not a good thing",
+    published: true,
+  },
+  {
+    id: "isn54n",
+    title: "The last Man on Earth",
+    body: "Amazing things on earth",
+    published: true,
+  },
+];
+
+const typeDefs = `
+   type Query {
+    me: User!
+    post: Post!
+    users(query: String): [User]!
+    posts(query: String): [Post]!
+   }
+
+   type User {
+     id: ID!
+     name: String!
+     email: String!
+     age: Int
+   }
+
+   type Post {
+     id: ID!
+     title: String!
+     body: String!
+     published: Boolean!
+   }
+`;
+
+// applicaiton schema
+// Resolver
+const resolvers = {
+  Query: {
+    posts(parent, args, ctx, info) {
+      if (!args.query) {
+        return posts;
+      }
+
+      return posts.filter((p, i) => {
+        const isTitleMatch = p.title.toLowerCase().includes(args.query.toLowerCase())
+        const isBodyMatch = p.body.toLowerCase().includes(args.query.toLowerCase())
+        return isTitleMatch || isBodyMatch;
+      });
+    },
+    users(parent, args, ctx, info) {
+      if (!args.query) {
+        return users;
+      }
+
+      return users.filter((user) => {
+        return user.name.toLowerCase().includes(args.query.toLowerCase());
+      });
+    },
+    me() {
+      return {
+        id: "instinst",
+        name: "Edwin",
+        email: "edwin@test.com",
+        age: 56,
+      };
+    },
+    post: () => {
+      return {
+        id: "isntian",
+        title: "The Awakening of Evil",
+        body: "Evil is not a good thing",
+        published: true,
+      };
+    },
+  },
+};
+
+const server = new GraphQLServer({
+  typeDefs,
+  resolvers,
+});
+
+server.start(() => {
+  console.log("The server is up!");
+});
+```
+
+#### Relational Data
+
+This allow use to setup relationship to our custom type.
