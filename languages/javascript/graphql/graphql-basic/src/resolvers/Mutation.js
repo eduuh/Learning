@@ -100,6 +100,32 @@ const Mutation = {
 
     return deleteUser[0];
   },
+  updateUser(parent, args, { db }, info) {
+    const user = db.users.find((user) => user.id === args.id);
+    if (!user) {
+      throw new Error("User does not exist");
+    }
+
+    if (typeof args.data.email === "String") {
+      const emailTaken = db.users.some((user) => user.email === data.email);
+
+      if (emailTaken) {
+        throw new Error("Email taken");
+      }
+
+      user.email = args.data.email;
+    }
+
+    if (typeof args.data.name === "staring") {
+      user.name = args.data.name;
+    }
+
+    if (typeof args.data.age !== "undefined") {
+      user.age = args.data.name;
+    }
+
+    return user;
+  },
 };
 
 export { Mutation as default };
