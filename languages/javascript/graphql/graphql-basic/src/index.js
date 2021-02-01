@@ -1,4 +1,5 @@
 import { GraphQLServer } from "graphql-yoga";
+import uuidV4 from "uuid/v4";
 
 //Five scalar value for graphql. string, Resolver, int, float, ID
 // Types definition
@@ -91,6 +92,12 @@ const typeDefs = `
     comments(query: String): [Comment!]
    }
 
+   type Mutation {
+    createUser(name: String, email: String, age: Int): User!
+    createPost(title: String!, body: String! published: Boolean!, author: ID!): Post!
+    createComment(text: String!, author: ID!, post: ID!): Comment!
+   }
+
    type Comment {
     id: ID!,
     text: String!
@@ -169,6 +176,68 @@ const resolvers = {
       };
     },
   },
+  Mutation: {
+    createComment(parent, args, ctx, info) {
+      const userExist = users.some((user) => user.id == args.author);
+      const postExist = posts.some((post) => {
+        return post.id == args.post && post.published === true;
+      });
+
+      if (!userExist || !postExist) {
+        throw new Error("Unable to find user and post");
+      }
+
+      const comment = {
+        id: uuidV4(),
+        text: args.text,
+        author: args.author,
+        post: args.post,
+      };
+
+      comments.push(comment);
+      return comment;
+    },
+    createPost(parent, args, ctx, infor) {
+      const userExist = users.some((user) => user.id === args.author);
+      const titleToken = posts.some((post) => post.title == args.title);
+
+      if (!userExist) {
+        throw new Error("User not found");
+      }
+
+      if (titleToken) {
+        throw new Error("Title Taken");
+      }
+
+      const post = {
+        id: uuidV4(),
+        title: args.title,
+        body: args.body,
+        published: args.published,
+      };
+
+      posts.push(post);
+      return post;
+    },
+    createUser(parent, args, ctx, infor) {
+      const emailToken = users.some((user) => user.email == args.email);
+
+      if (emailToken) {
+        throw new Error("Email taken");
+      }
+
+      const user = {
+        id: uuidV4(),
+        name: args.name,
+        email: args.email,
+        age: args.age,
+      };
+
+      users.push(user);
+
+      return user;
+    },
+  },
   Post: {
     author(parent, args, ctx, info) {
       return users.find((user) => {
@@ -216,6 +285,9 @@ const server = new GraphQLServer({
   resolvers,
 });
 
-server.start(() => {
-  console.log("The server is up!");
+console.log(server);
+
+server.start((enst) => {
+  const { port } = enst;
+  console.log(`The server in up at ${port}`);
 });
