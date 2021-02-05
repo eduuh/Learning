@@ -11,11 +11,22 @@ type Mutation {
  deleteUser(id: ID!): User!
  updateUser(id: ID!, data: updateUserInput): User!
  createPost(data: createUserPost!): Post!
+ updatePost(id: ID!, data: updatePostInput): Post!
  deletePost(id: ID!): Post!
  createComment(data: createCommentInput!): Comment!
  deleteComment(id: ID!): Comment!
+ updateComment(id: ID!, data: updateCommentInput!): Post!
 }
 
+input updateCommentInput {
+ text: String!
+}
+
+input updatePostInput {
+  title: String!
+  body: String!
+  published: Boolean!
+}
 input createCommentInput {
   text: String!
   author: ID!

@@ -1,79 +1,69 @@
 const comments = [
   {
-    id: "5",
+    id: "1",
     text: "The first comment",
-    author: "8",
-    posts: "isn54n",
+    author: "1",
+    post: "1",
   },
   {
-    id: "6",
+    id: "2",
     text: "The Second comment",
-    author: "4",
-    posts: "isn6",
+    author: "2",
+    post: "2",
   },
   {
-    id: "7",
+    id: "3",
     text: "The Third comment",
-    author: "5",
-    post: "isn54n",
+    author: "3",
+    post: "3",
   },
 ];
-
 const users = [
   {
-    id: "8",
-    name: "Kdotn",
-    email: "kdotn@test.com",
-    posts: "isn54n",
+    id: "1",
+    name: "Jackson Maina",
+    email: "jackson@test.com",
   },
   {
-    id: "4",
+    id: "2",
     name: "Eduuh",
     email: "eduuh@test.com",
-    posts: "isn6",
   },
   {
-    id: "5",
+    id: "3",
     name: "Kamau",
     email: "kamau@test.com",
-    post: "isn56",
-  },
-  {
-    id: "6",
-    name: "Musaya",
-    email: "musaya@test.com",
-    post: "isn4",
   },
 ];
 
 const posts = [
   {
-    id: "isn4",
+    id: "1",
     title: "The Next leve code of Evil",
     body: "Evil is not a good code, its honourable in KENYA",
     published: true,
-    author: "6",
+    author: "1",
   },
   {
-    id: "isn56",
+    id: "2",
     title: "The Depend Hansle",
     body: "Evil is not a good thing, its Hansle",
     published: true,
-    author: "5",
+    author: "2",
   },
   {
-    id: "isn6",
+    id: "3",
     title: "The Awakening of Evil",
     body: "Evil is not a good thing",
     published: true,
-    author: "4",
+    author: "3",
   },
   {
-    id: "isn54n",
+    id: "4",
     title: "The last Man on Earth",
     body: "Amazing things on earth",
     published: true,
-    author: "8",
+    author: "3",
   },
 ];
 

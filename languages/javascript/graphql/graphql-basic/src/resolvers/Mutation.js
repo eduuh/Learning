@@ -17,7 +17,7 @@ const Mutation = {
     };
 
     db.comments.push(comment);
-    return db.comment;
+    return comment;
   },
 
   deleteComment(parent, args, { db }, info) {
@@ -57,7 +57,7 @@ const Mutation = {
       throw new Error("Post doe not exist");
     }
     const deletepost = db.posts.splice(postindex, 1);
-    comments = comments.filter((comment) => comment.post !== args.id);
+    db.comments = db.comments.filter((comment) => comment.post !== args.id);
     return deletepost[0];
   },
 
@@ -100,14 +100,43 @@ const Mutation = {
 
     return deleteUser[0];
   },
+  updatePost(parent, args, { db }, infor) {
+    const post = db.post.find((post) => post.id == args.id);
+    if (post) {
+      throw new Error("Post does not exist");
+    }
+    if (typeof args.data.title === "string") {
+      const titltaken = db.post.some((user) => user.title == args.data.title);
+
+      if (titltaken) {
+        throw new Error("Title Taken");
+      }
+      post.title = args.data.email;
+    }
+    post.body = args.data.body;
+    post.published = args.data.published;
+    return post;
+  },
+  updateComment(parent, args, { db }, info) {
+    let comment = db.comment.find((co) => co.id === args.id);
+
+    comment = args.data.text;
+
+    return comment;
+  },
   updateUser(parent, args, { db }, info) {
-    const user = db.users.find((user) => user.id === args.id);
+    let user = db.users.find((user) => user.id === args.id);
     if (!user) {
       throw new Error("User does not exist");
     }
 
-    if (typeof args.data.email === "String") {
-      const emailTaken = db.users.some((user) => user.email === data.email);
+    console.log("user:", user);
+    console.log("args.data ");
+
+    if (typeof args.data.email == "string") {
+      const emailTaken = db.users.some(
+        (user) => user.email === args.data.email
+      );
 
       if (emailTaken) {
         throw new Error("Email taken");
@@ -116,7 +145,7 @@ const Mutation = {
       user.email = args.data.email;
     }
 
-    if (typeof args.data.name === "staring") {
+    if (typeof args.data.name === "string") {
       user.name = args.data.name;
     }
 
