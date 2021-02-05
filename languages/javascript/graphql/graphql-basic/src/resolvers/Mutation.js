@@ -1,7 +1,7 @@
 import uuidV4 from "uuid/v4";
 
 const Mutation = {
-  createComment(parent, args, { db }, info) {
+  createComment(parent, args, { db, pubSub }, info) {
     const userExist = db.users.some((user) => user.id == args.data.author);
     const postExist = db.posts.some(
       (post) => post.id == args.data.post && post.published == true
@@ -17,6 +17,10 @@ const Mutation = {
     };
 
     db.comments.push(comment);
+    pubSub.publish(`comment ${args.data.post}`, {
+      comment,
+    });
+
     return comment;
   },
 
@@ -30,7 +34,7 @@ const Mutation = {
     const deletcomment = db.comments.splice(commentId, 1);
     return deletcomment[0];
   },
-  createPost(parent, args, { db }, infor) {
+  createPost(parent, args, { pubSub, db }, infor) {
     const userExist = db.users.some((user) => user.id === args.data.author);
     const titleToken = db.posts.some((post) => post.title == args.data.title);
 
@@ -48,17 +52,35 @@ const Mutation = {
     };
 
     db.posts.push(post);
+    if (args.data.published) {
+      pubSub.publish("post", {
+        post: {
+          mutation: "CREATED",
+          data: post,
+        },
+      });
+    }
     return post;
   },
 
-  deletePost(parent, args, { db }, info) {
+  deletePost(parent, args, { db, pubSub }, info) {
     const postindex = db.posts.findIndex((post) => post.id == args.id);
     if (postindex === -1) {
       throw new Error("Post doe not exist");
     }
-    const deletepost = db.posts.splice(postindex, 1);
+    const [post] = db.posts.splice(postindex, 1);
     db.comments = db.comments.filter((comment) => comment.post !== args.id);
-    return deletepost[0];
+
+    if (post.published) {
+      pubSub.publish("post", {
+        post: {
+          mutation: "DELETED",
+          data: post,
+        },
+      });
+    }
+
+    return post;
   },
 
   createUser(parent, args, { db }, infor) {
@@ -100,21 +122,56 @@ const Mutation = {
 
     return deleteUser[0];
   },
-  updatePost(parent, args, { db }, infor) {
-    const post = db.post.find((post) => post.id == args.id);
-    if (post) {
+  updatePost(parent, args, { db, pubSub }, infor) {
+    let post = db.posts.find((post) => post.id == args.id);
+    const originalPost = { ...post };
+    if (!post) {
       throw new Error("Post does not exist");
     }
     if (typeof args.data.title === "string") {
-      const titltaken = db.post.some((user) => user.title == args.data.title);
+      const titltaken = db.posts.some((user) => user.title == args.data.title);
 
       if (titltaken) {
         throw new Error("Title Taken");
       }
-      post.title = args.data.email;
+      post.title = args.data.title;
     }
-    post.body = args.data.body;
-    post.published = args.data.published;
+
+    if (args.data.body === "string") {
+      post.body = args.data.body;
+    }
+
+    if (typeof args.data.published === "boolean") {
+      post.published = args.data.published;
+
+      if (originalPost.published && !post.published) {
+        //deleted,
+        pubSub.publish("post", {
+          post: {
+            mutation: "DELETED",
+            data: originalPost,
+          },
+        });
+      } else if (!originalPost.published && post.published) {
+        // created
+
+        pubSub.publish("post", {
+          post: {
+            mutation: "CREATED",
+            data: post,
+          },
+        });
+      }
+    } else if (post.published) {
+      //updated
+      pubSub.publish("post", {
+        post: {
+          mutation: "UPDATED",
+          data: originalPost,
+        },
+      });
+    }
+
     return post;
   },
   updateComment(parent, args, { db }, info) {

@@ -41,7 +41,7 @@ const posts = [
     id: "1",
     title: "The Next leve code of Evil",
     body: "Evil is not a good code, its honourable in KENYA",
-    published: true,
+    published: false,
     author: "1",
   },
   {
@@ -62,7 +62,7 @@ const posts = [
     id: "4",
     title: "The last Man on Earth",
     body: "Amazing things on earth",
-    published: true,
+    published: false,
     author: "3",
   },
 ];
