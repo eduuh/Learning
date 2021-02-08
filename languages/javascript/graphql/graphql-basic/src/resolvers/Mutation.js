@@ -18,21 +18,31 @@ const Mutation = {
 
     db.comments.push(comment);
     pubSub.publish(`comment ${args.data.post}`, {
-      comment,
+      comment: {
+        mutation: "CREATED",
+        data: comment,
+      },
     });
 
     return comment;
   },
 
-  deleteComment(parent, args, { db }, info) {
+  deleteComment(parent, args, { db, pubSub }, info) {
     const commentId = db.comments.findIndex(
       (comment) => comment.id === args.id
     );
     if (commentId === -1) {
       throw new Error("Comment does not exist");
     }
-    const deletcomment = db.comments.splice(commentId, 1);
-    return deletcomment[0];
+    const [deletcomment] = db.comments.splice(commentId, 1);
+
+    pubSub.publish("comment", {
+      comment: {
+        mutation: "DELETED",
+        data: deletcomment,
+      },
+    });
+    return deletcomment;
   },
   createPost(parent, args, { pubSub, db }, infor) {
     const userExist = db.users.some((user) => user.id === args.data.author);
@@ -83,7 +93,7 @@ const Mutation = {
     return post;
   },
 
-  createUser(parent, args, { db }, infor) {
+  createUser(parent, args, { db, pubSub }, infor) {
     const emailToken = db.users.some((user) => user.email == args.email);
 
     if (emailToken) {
@@ -97,10 +107,17 @@ const Mutation = {
 
     db.users.push(user);
 
+    pubSub.publish("user", {
+      user: {
+        Mutation: "CREATED",
+        data: user,
+      },
+    });
+
     return user;
   },
 
-  deleteUser(parent, args, { db }, info) {
+  deleteUser(parent, args, { db, pubSub }, info) {
     const userIndex = db.users.findIndex((user) => user.id === args.i);
     if (userIndex == -1) {
       throw new Error("User not found");
@@ -119,6 +136,12 @@ const Mutation = {
     });
 
     db.comments = db.comments.filter((comment) => comment.author !== post.id);
+    pubSub.publish("user", {
+      user: {
+        Mutation: "DELETED",
+        data: deleteUser[0],
+      },
+    });
 
     return deleteUser[0];
   },
@@ -181,7 +204,7 @@ const Mutation = {
 
     return comment;
   },
-  updateUser(parent, args, { db }, info) {
+  updateUser(parent, args, { db, pubSub }, info) {
     let user = db.users.find((user) => user.id === args.id);
     if (!user) {
       throw new Error("User does not exist");
@@ -209,6 +232,13 @@ const Mutation = {
     if (typeof args.data.age !== "undefined") {
       user.age = args.data.name;
     }
+
+    pubSub.publish("user", {
+      user: {
+        mutation: "UPDATED",
+        data: user,
+      },
+    });
 
     return user;
   },

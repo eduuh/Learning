@@ -33,6 +33,12 @@ const Subscription = {
       return pubSub.asyncIterator(`post`);
     },
   },
+
+  user: {
+    subscribe(parent, args, { pubSub }, info) {
+      return pubSub.asyncIterator("user");
+    },
+  },
 };
 
 export { Subscription as default };
