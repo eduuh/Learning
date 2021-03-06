@@ -1,0 +1,15 @@
+### Klavaro Deliberate practice
+
+CP/S   WPM   Goal WPM  myAccuracy  GoalAccuracy   practice number
+________________________________________________________
+
+4.21   50.5     60        95            98          1    
+4.18   50.1     60        95.6          98          2    
+4.24   50.9     60        94.4          98          3
+
+
+
+
+
+
+

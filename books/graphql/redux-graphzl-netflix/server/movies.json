@@ -1,0 +1,19 @@
+[
+{
+"title": "Pirates of the Caribbean: On Stranger Tides",
+"cover": "/dist/images/On_Stranger_Tides_Poster.jpg",
+"year": "2011",
+"cost": 378.5,
+"starring": [{
+"name": "Johnny Depp"
+}, {
+"name": "Penélope Cruz"
+}, {
+"name": "Ian McShane"
+}, {
+"name": "Kevin R. McNally"
+}, {
+"name": "Geoffrey Rush"
+}]
+}
+]

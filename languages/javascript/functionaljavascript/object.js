@@ -1,13 +1,15 @@
 var person = {};
 
-person.name = 'Mrs. White';
+const edwin = "edwin";
+
+person.name = "Mrs. White";
 person.age = 33;
 
 // storing value by reference
 var who = person.name;
 
 // reassignmements
-person.name = 'Mr. White';
+person.name = "Mr. White";
 
 console.log(person);
 console.log(who);
@@ -26,17 +28,17 @@ console.log(who.story);
 
 // An array is an object.
 var person3 = [];
-person3.name = 'Mrs. White';
+person3.name = "Mrs. White";
 var who = person.name;
 console.log(who);
 
 // array is an object
-console.log(typeof person3 === 'array'); // false
-console.log(typeof person3 === 'object'); // true
+console.log(typeof person3 === "array"); // false
+console.log(typeof person3 === "object"); // true
 
 // Brackets
 var person3 = [];
-person3[0] = ' I was not in the billiards room';
+person3[0] = " I was not in the billiards room";
 console.log(person3);
 
 // some rules.
@@ -48,10 +50,8 @@ console.log(person3);
 
 // using non-valid characters.
 var box = {};
-box['material'] = 'cardboards';
-box['*^'] = 'testing invalid characters';
+box["material"] = "cardboards";
+box["*^"] = "testing invalid characters";
 // { material: 'cardboards', '*^': 'testing invalid characters' }
-box['*^'];
+box["*^"];
 //'testing invalid characters'
-
-/// 

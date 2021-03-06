@@ -229,3 +229,226 @@ type photo {
   description: String
 }
 ```
+
+#### Lets thing of the relationships for a minute
+
+##### comments
+
+1. belongs to a post.
+2. created by a user.
+
+##### Post
+
+1. belongs to user.
+2. belongs to a comments.
+
+##### User
+
+1. Makes a post.
+2. Makes a comment.
+
+#### I have updated the sample data to have the following
+
+From the new **\*graphql api** structure.
+
+```graphql
+const comments = [
+  {
+    id: "1",
+    text: "The first comment",
+    author: "1",
+    posts: "isn54n",
+  },
+  {
+    id: "2",
+    text: "The Second comment",
+    author: "2",
+    posts: "isn6",
+  },
+  {
+    id: "3",
+    text: "The Third comment",
+    author: "3",
+    post: "isn54n",
+  },
+];
+const users = [
+  {
+    id: "1",
+    name: "Jackson Maina",
+    email: "jackson@test.com",
+  },
+  {
+    id: "2",
+    name: "Eduuh",
+    email: "eduuh@test.com",
+  },
+  {
+    id: "6",
+    name: "Kamau",
+    email: "kamau@test.com",
+  },
+];
+
+const posts = [
+  {
+    id: "1",
+    title: "The Next leve code of Evil",
+    body: "Evil is not a good code, its honourable in KENYA",
+    published: true,
+    author: "1",
+  },
+  {
+    id: "2",
+    title: "The Depend Hansle",
+    body: "Evil is not a good thing, its Hansle",
+    published: true,
+    author: "2",
+  },
+  {
+    id: "3",
+    title: "The Awakening of Evil",
+    body: "Evil is not a good thing",
+    published: true,
+    author: "3",
+  },
+  {
+    id: "4",
+    title: "The last Man on Earth",
+    body: "Amazing things on earth",
+    published: true,
+    author: "3",
+  },
+];
+
+const db = {
+  users,
+  posts,
+  comments,
+};
+
+export { db as default };
+```
+
+#### to make the query for the data without relationship on grapql playground
+
+```graphql
+query {
+  users {
+    id
+    name
+  }
+  posts {
+    id
+    title
+  }
+  comments {
+    id
+    text
+  }
+}
+```
+
+### Loading relational data
+
+Loading post with their authors.
+
+```graphql
+query {
+  posts {
+    id
+    title
+    author {
+      id
+      name
+    }
+  }
+}
+```
+
+Loading comments with their authors.
+
+```graphql
+query {
+  comments {
+    id
+    text
+    author {
+      id
+      email
+    }
+  }
+}
+```
+
+#### Mutation
+
+Create user Mutation.
+
+```graphql
+mutation {
+  createUser(data: { name: "Test User", email: "test@gmail.com", age: 54 }) {
+    id
+    name
+  }
+}
+```
+
+Update User.
+
+```graphql
+mutation {
+  updateUser(
+    id: "1"
+    data: { name: "Test User", email: "test@gmail.com", age: 54 }
+  ) {
+    id
+    name
+  }
+}
+```
+
+create posts
+
+```graphql
+mutation {
+  createPost(
+    data: {
+      title: "The first post test"
+      body: "Posting the test for the new "
+      published: false
+      author: 1
+    }
+  ) {
+    id
+    title
+  }
+}
+```
+
+Delete post
+
+```graphql
+mutation {
+  deletePost(id: "3") {
+    id
+    title
+  }
+}
+```
+
+### GraphQL Basics: Subscription
+
+We can substribe to data changes, to ensure that
+the we get the data when we want the latest data.
+
+You could use **query** to do **server pooling** to
+get latest request.
+
+The best thing about, subscription is that we open
+up a websocket, that listens for changes in the
+data.
+
+##### Creating dumy subsricption.
+
+A real time calucation every second.

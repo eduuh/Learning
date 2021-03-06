@@ -1,0 +1,95 @@
+### GraphQL . Netflix Clone Server
+
+GraphQL is a modern way of exposing data to React apps. GraphQL is often used with Relay
+but you can use it with **redux** as well. 
+
+GraphQL uses query strings that are interpreted by a server (typicall Node), which in turn
+returns data in format specified by those queries. The queries are written in a Json-like
+format.
+
+```json
+{
+  user(id: 4554544) {
+    id,
+    name,
+    isViewerFriend,
+    profilePicture(size: 56) {
+        uri,
+        width,
+        height
+    }
+  }
+}
+```
+
+But with the newer GraphQL pattern, you can reverse control by letting clients (front-end
+or mobile apps) dictate what data they need instead fo coding this logic into server
+endpoints/routes.
+
+#### Advantages
+
+1. **client-specific queries** Clients get exactly what they need.
+2. **structure, arbitrary code** The uniform Api offers server-side flexibility.
+3. **strong typing** More robust validation and certainty in respoinse, plus easier data
+consumption by strongly typed languages such as Typescripts.
+4. **Hierarchical queries** Queries follow the data they return, which is important becaues
+dat is used by hierarchical views.
+5. **Faster prototyping** There no need for extensive back-end development or large,
+separate back-end and Api teams, becaues the query has a single endpoints.
+6. **Fewer Api call** The front-end app makes fewer server requests becaues the data
+structure is dicatate by the front-end app and can contain what was previously obtained via
+several Rest endpoints.
+
+### Adding a server to the Netflix clone
+
+To deliver dat to your React app, you'll use a simple server with express and GraphQL.
+Express is great at organizing and exposing API endpoints and graphzl takes care of making
+your data accessinble in a browser-friendly way, as JSON>
+
+Lets create the project structure
+
+```bash
+mkdir redux-graphzl-netflix
+cd redux-graphzl-netflix
+mkdir server 
+cd server
+touch index.js movies.json schema.json
+```
+
+The data will still be taken from a Json file but this time it's a server file. You can
+easily replace the JSON file movies.json with database call server/schema.js
+
+```bash
+yarn add express express-graphql graphql
+```
+> express
+Adds the express Node web server framework to use on the back end.
+
+> express-graphql
+
+Adds the GraphQL plug-in for Express to use on both the backend and frontend end
+
+> graphql
+
+Adds GraphQL to use on both backend and frontend
+
+### Implementing GraphQL on a server
+
+Then entry point of the application **index.js**. The file is in the server floder because
+it`s used only on the back end and must be exposed to client for security concerns (it can
+contain API KEY and password)
+
+For graphql API to work you need to set up one more rouet **/q** in which you use the
+graphqlHTTP library along with a schema (server/schema.js) and session (req.session) to
+respond with data.
+
+```js
+app.use('/q', graphqlHTTP(req => ({
+    schema,
+    context: req.session
+})))
+```
+
+
+
+

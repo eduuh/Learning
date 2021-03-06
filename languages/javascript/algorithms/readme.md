@@ -4,7 +4,7 @@ What makes an algorithm fast? To answer this question, it tend to be grouped in 
 - Time complexity
 - Space Comlexity
 
-###### Time complexity
+## Time complexity
 
 Here we answer the question of how many primitive **operations** are executed?
 
@@ -242,9 +242,11 @@ Greedy algoritm algorithms always make the locally optimal choice!. Without cons
 
 You are the banker in Monopoly with your family who has lost  many of the game piece so you only have bills in the denominations.
 
-           $5 $10 $25
+       $5 $10 $25
 
 You need only pay out you family in the least number of bills possible so you don't run out befor the game is over. Write a function that calculate the least number of bills required for any given dollar amount that is divisible by 5.
 
 
+#### Brute Forcee
 
+Brute force Approach Calculates every single combination possible and keeps track of the minimum.
