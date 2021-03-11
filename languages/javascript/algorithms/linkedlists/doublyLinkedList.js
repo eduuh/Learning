@@ -1,38 +1,9 @@
-const { Console } = require("console")
-
-const basket = ["apples", "grapes", "pears"]
-
-// Linked lists: apples --> grapse --> pears
-// the arrow signifies --> pointer
-//
-// A more accurate example
-// apples
-//   5454  --> grapes
-//                5456 --> pears
-//                            545 -- null
-//  numbers signifies memory address.
-//
-//
-//  Let go to the : visualalgo
-
-let myLinkedList = {
-  head: {
-    value: 10,
-    next: {
-      value: 5,
-      next: {
-        value: 16,
-        next: null,
-      },
-    },
-  },
-}
-
-class LinkendList {
+class DoublyLinkendList {
   constructor(value) {
     this.head = {
       value: value,
       next: null,
+      prev: null,
     }
     this.tail = this.head
     this.length = 1
@@ -42,7 +13,9 @@ class LinkendList {
     const newNode = {
       value: value,
       next: null,
+      prev: null,
     }
+    newNode.prev = this.tail
     this.tail.next = newNode
     this.tail = newNode
     this.length++
@@ -53,8 +26,12 @@ class LinkendList {
     let headNode = {
       value: value,
       next: this.head,
+      prev: null,
     }
+
     this.head = headNode
+    this.head.prev = headNode
+    this.length++
     return this
   }
 
@@ -80,10 +57,18 @@ class LinkendList {
     }
     // 1-->2-->newnode-->3
     const leader = this.traverseToIndex(index - 1)
-    const holdingPointer = leader.next
+    const follower = leader.next
     leader.next = newNode
-    newNode.next = holdingPointer
+    newNode.prev = leader
+    newNode.next = follower
     this.length++
+  }
+
+  remove(index) {
+    const leader = this.traverseToIndex(index - 1)
+    const unwantedNode = leader.next
+    leader.next = unwantedNode.next
+    this.length--
   }
 
   traverseToIndex(index) {
@@ -98,12 +83,10 @@ class LinkendList {
   }
 }
 
-const myl = new LinkendList(1)
+const myl = new DoublyLinkendList(1)
 myl.append(2)
 myl.append(3)
-console.log(myl.printList())
-myl.insert(2, 99)
-console.log(myl.printList())
+console.log(myl)
 
 // You could decide to create a class for the Node Linked
 // List
